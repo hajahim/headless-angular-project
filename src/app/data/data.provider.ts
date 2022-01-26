@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, EMPTY } from 'rxjs';
 
+export interface Condition {
+  key: string,
+  value: string
+}
+
 export interface DataQuery {
-  table: string
+  table: string,
+  condition?: Array<Condition>
 };
 
 @Injectable({
@@ -18,7 +24,7 @@ export class IDataProvider {
    * should return empty data if not implemented
    * @returns generic type
    */
-  getAll(query: DataQuery) : Observable<any> {
+  getAll(query: DataQuery) : Observable<any[]> {
     return EMPTY;
   }
 

@@ -1,31 +1,49 @@
 import { Injectable, NgModule } from '@angular/core';
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { Firestore, collectionData, collection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule, CollectionReference, Query } from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { BehaviorSubject, Observable, combineLatest, switchMap, OperatorFunction } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-import { IDataProvider, DataQuery } from './data.provider';
+import { IDataProvider, DataQuery, Condition } from './data.provider';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 
 export class FirebaseProvider extends IDataProvider {
   
-  constructor (private firestore: Firestore) { super(); }
+  constructor (private firestore: AngularFirestore) { super(); }
 
-  override getAll(query: DataQuery): Observable<any> {
-    const targetedCollection = collection(this.firestore, query.table);
-    return collectionData(targetedCollection);
+  override getAll(query: DataQuery): Observable<any[]> {
+    const targetedCollection = this.firestore.collection(query.table).valueChanges()
+    return targetedCollection;
+  }
+
+  override get(query: DataQuery): Observable<any> {
+    let behaviours: any = [];
+    behaviours = query.condition?.map( () => new BehaviorSubject(''));
+    const items = combineLatest(behaviours)
+      .pipe(
+        switchMap((conditions) =>
+            this.firestore.collection(query.table, ref => {
+              let queryConditions: Condition[] = Array.prototype.slice.call(conditions);
+              let query : CollectionReference | Query = ref;
+              queryConditions.forEach((condition: Condition) => {
+                if (condition.value) query = query.where(condition.key, '==', condition.value);
+              });
+              return query;
+            }).valueChanges()
+        )
+      )
+    query.condition?.forEach( (condition, index) => behaviours[index].next(condition));
+    return items;
   }
   
 }
 
 @NgModule({
   imports: [
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfiguration)),
-    provideFirestore(() => getFirestore()),
+    AngularFireModule.initializeApp(environment.firebaseConfiguration),
+    AngularFirestoreModule
   ]
 })
 
