@@ -1,4 +1,9 @@
-export class Yields {
+export interface YieldsRecord {
+  [key: string]: Array<YieldsComponent>;
+}
+
+export interface YieldsComponent {
   componentName?: string;
-  data: Array<any> = [];
+  data?: {[key: string]: number};
+  yields?: YieldsRecord;
 }

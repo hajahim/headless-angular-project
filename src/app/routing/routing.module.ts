@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, UrlSegment, UrlMatchResult } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ServerErrorComponent } from './server-error/server-error.component';
 import { RenderingComponent } from './rendering/rendering-component';
 import { RouteFetcher } from './route-fetcher.service';
 import { Route, RouteService } from './route.service';
-import { BrowserModule } from '@angular/platform-browser';
+import { LibraryModule } from '../lib/lib.module';
 
 export function RouteFinder(url: UrlSegment[]): UrlMatchResult {
   const routeService = new RouteService();
@@ -42,14 +43,16 @@ const applicationRoutes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(applicationRoutes, { onSameUrlNavigation: 'reload', initialNavigation: 'enabled' }),
-    BrowserModule
+    BrowserModule,
+    LibraryModule
   ],
   exports: [
     RouterModule
   ],
   declarations: [
     NotFoundComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    RenderingComponent
   ],
   providers: [
     RouteFetcher,

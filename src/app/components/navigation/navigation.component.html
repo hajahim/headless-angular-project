@@ -1,0 +1,9 @@
+
+<p>{{title}}</p>
+<nav>
+  <ul>
+    <li *ngFor="let item of items">
+      <a routerLink={{item.url}}>{{item.label}}</a>
+    </li>
+  </ul>
+</nav>

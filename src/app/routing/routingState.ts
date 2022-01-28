@@ -1,4 +1,4 @@
-import { Yields } from "./yields";
+import { YieldsRecord } from "./yields";
 import { RoutingException } from './routingException';
 
 export class RoutingState {
@@ -7,5 +7,5 @@ export class RoutingState {
   modifiedAt?: string;
   id?: string;
   error?: RoutingException;
-  yields?: Array<Yields> = [];
+  yields?: YieldsRecord;
 }
