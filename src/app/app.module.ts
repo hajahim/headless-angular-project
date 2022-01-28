@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { DataModule } from './data/data.module';
 import { RoutingModule } from './routing/routing.module';
+import { ComponentsModule } from './components/components.module';
+import { UtilsModule } from './utils/utils.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { RoutingModule } from './routing/routing.module';
   imports: [
     BrowserModule,
     DataModule,
-    RoutingModule
+    RoutingModule,
+    ComponentsModule,
+    UtilsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
