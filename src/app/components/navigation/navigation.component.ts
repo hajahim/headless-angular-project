@@ -1,6 +1,6 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnChanges, SimpleChanges } from "@angular/core";
 
-class NavigationItem {
+export class NavigationItem {
   label: string;
   url: string;
 }
@@ -10,7 +10,11 @@ class NavigationItem {
   templateUrl: './navigation.component.html'
 })
 
-export class NavigationComponent {
+export class NavigationComponent implements OnChanges {
   @Input() title: string;
   @Input() items: NavigationItem[];
+
+  ngOnChanges(changes: SimpleChanges): void {
+      console.warn(this.title)
+  }
 }
