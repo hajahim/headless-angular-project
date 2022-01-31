@@ -2,23 +2,23 @@ import { Injectable, NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule, CollectionReference, Query } from '@angular/fire/compat/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { BehaviorSubject, Observable, combineLatest, switchMap, OperatorFunction } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, switchMap, OperatorFunction, EMPTY } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 import { IDataProvider, DataQuery, Condition } from './data.provider';
 
 @Injectable()
 
-export class FirebaseProvider extends IDataProvider {
+export class FirebaseProvider implements IDataProvider {
   
-  constructor (private firestore: AngularFirestore) { super(); }
+  constructor (private firestore: AngularFirestore) { }
 
-  override getAll(query: DataQuery): Observable<any[]> {
+  getAll(query: DataQuery): Observable<any[]> {
     const targetedCollection = this.firestore.collection(query.table).valueChanges()
     return targetedCollection;
   }
 
-  override get(query: DataQuery): Observable<any> {
+  get(query: DataQuery): Observable<any> {
     let behaviours: any = [];
     behaviours = query.condition?.map( () => new BehaviorSubject(''));
     const items = combineLatest(behaviours)
@@ -36,6 +36,10 @@ export class FirebaseProvider extends IDataProvider {
       )
     query.condition?.forEach( (condition, index) => behaviours[index].next(condition));
     return items;
+  }
+
+  update(query: DataQuery): Observable<any> {
+    return EMPTY;
   }
   
 }

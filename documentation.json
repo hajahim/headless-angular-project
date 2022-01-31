@@ -1,0 +1,2904 @@
+{
+    "pipes": [
+        {
+            "name": "ObjectKeysPipe",
+            "id": "pipe-ObjectKeysPipe-5ea8c78f51d7a2fde8a7f4344d65b06998da15d995bc0ac3d7e09d5315413a8378b02dc097acdbfd706b5eb589bd8efb7f5931c04417502a2b80df66924773f2",
+            "file": "src/app/utils/object-keys.pipe.ts",
+            "type": "pipe",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "transform",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 11,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "ngname": "objectkeys",
+            "sourceCode": "import { Injectable, Pipe } from '@angular/core';\r\n\r\n@Pipe({\r\n  name: 'objectkeys'\r\n})\r\n\r\n@Injectable()\r\n\r\nexport class ObjectKeysPipe {\r\n\r\n  transform(value: any):any {\r\n    const keys = Reflect.ownKeys(value);\r\n    return keys;\r\n  }\r\n\r\n}"
+        }
+    ],
+    "interfaces": [
+        {
+            "name": "ComponentInstance",
+            "id": "interface-ComponentInstance-9ccb69533e366c71674014241d6dcebcdfb5dc54ebfaf72cba503564e40fde5e3ba19ee6c3e5a56b9c4991c04a21057e9bbbc7dd91fe4f98f3b798c5ca48b0d8",
+            "file": "src/app/lib/components/component-builder.service.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Inject, Injectable, Type, ComponentFactory } from \"@angular/core\";\r\nimport { ComponentEntry } from \"../lib.module\";\r\nimport { YIELDS_COMPONENTS, YIELDS_UNREFERENCED_COMPONENTS } from \"./yields/yields.token\";\r\n\r\nexport interface ComponentInstance {\r\n  instance?: Type<any>;\r\n  componentName: string;\r\n}\r\n\r\n@Injectable()\r\n\r\nexport class ComponentBuilderService {\r\n  private componentTree: Map<string, Type<unknown>>;\r\n\r\n  constructor(\r\n    @Inject(YIELDS_COMPONENTS) private components : ComponentEntry[],\r\n    @Inject(YIELDS_UNREFERENCED_COMPONENTS) private unReferenceComponent: Type<unknown>\r\n  ) {\r\n    this.componentTree = new Map();\r\n    this.components.forEach(component => this.componentTree.set(component.tag, component.instance));\r\n  }\r\n\r\n  getComponentByName (name: string): ComponentInstance {\r\n    let component = this.componentTree.get(name);\r\n    if (!component) {\r\n      component = this.unReferenceComponent;\r\n    }\r\n    return {\r\n      instance: component,\r\n      componentName: name\r\n    }\r\n  }\r\n}",
+            "properties": [
+                {
+                    "name": "componentName",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "instance",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Type<any>",
+                    "optional": true,
+                    "description": "",
+                    "line": 6
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "Condition",
+            "id": "interface-Condition-01efc5fc33d24c1d65cff6c0b019da81e51321b82f5349b68935edc5935d32bb4bc563b4f6edebdf41e97753ab180743cbe1782441e52a42994cac46360cae96",
+            "file": "src/app/data/data.provider.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable, EMPTY } from 'rxjs';\r\n\r\nexport interface Condition {\r\n  key: string,\r\n  value: string\r\n}\r\n\r\nexport interface DataQuery {\r\n  table: string,\r\n  condition?: Array<Condition>\r\n};\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\n/**\r\n * generic data provider class\r\n*/\r\nexport class IDataProvider {\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  getAll(query: DataQuery) : Observable<any[]> {\r\n    return EMPTY;\r\n  }\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  get(query: DataQuery) : Observable<any> {\r\n    return EMPTY;\r\n  }\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  update(query: DataQuery) : Observable<any> {\r\n    return EMPTY;\r\n  }\r\n\r\n}",
+            "properties": [
+                {
+                    "name": "key",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "DataQuery",
+            "id": "interface-DataQuery-01efc5fc33d24c1d65cff6c0b019da81e51321b82f5349b68935edc5935d32bb4bc563b4f6edebdf41e97753ab180743cbe1782441e52a42994cac46360cae96",
+            "file": "src/app/data/data.provider.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable, EMPTY } from 'rxjs';\r\n\r\nexport interface Condition {\r\n  key: string,\r\n  value: string\r\n}\r\n\r\nexport interface DataQuery {\r\n  table: string,\r\n  condition?: Array<Condition>\r\n};\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\n/**\r\n * generic data provider class\r\n*/\r\nexport class IDataProvider {\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  getAll(query: DataQuery) : Observable<any[]> {\r\n    return EMPTY;\r\n  }\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  get(query: DataQuery) : Observable<any> {\r\n    return EMPTY;\r\n  }\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  update(query: DataQuery) : Observable<any> {\r\n    return EMPTY;\r\n  }\r\n\r\n}",
+            "properties": [
+                {
+                    "name": "condition",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Array<Condition>",
+                    "optional": true,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "table",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "RoutingException",
+            "id": "interface-RoutingException-470a16cbca4d5d28e362d3b6f26bf7843d9b65750e950c5752092475ad084a65ff404da0d2d1000e810eeb1bb63535fdd13190c791cbc439483c7a9397cef20b",
+            "file": "src/app/routing/routingException.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface RoutingException {\r\n  message?: string,\r\n  url?: string\r\n}",
+            "properties": [
+                {
+                    "name": "message",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "url",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 3
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "YieldsComponent",
+            "id": "interface-YieldsComponent-ab9ff59cf433adff051e55cbdb537b114ba0709d4ce36510426bdfccc4a66c771dda8bdbdb49c4ae2dfd16f39d3a59c4ccb376cf82b21154339f48ea38d5a411",
+            "file": "src/app/routing/yields.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface YieldsRecord {\r\n  [key: string]: Array<YieldsComponent>;\r\n}\r\n\r\nexport interface YieldsComponent {\r\n  componentName?: string;\r\n  data?: {[key: string]: number};\r\n  yields?: YieldsRecord;\r\n}",
+            "properties": [
+                {
+                    "name": "componentName",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "data",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type",
+                    "optional": true,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "yields",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "YieldsRecord",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "YieldsRecord",
+            "id": "interface-YieldsRecord-ab9ff59cf433adff051e55cbdb537b114ba0709d4ce36510426bdfccc4a66c771dda8bdbdb49c4ae2dfd16f39d3a59c4ccb376cf82b21154339f48ea38d5a411",
+            "file": "src/app/routing/yields.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface YieldsRecord {\r\n  [key: string]: Array<YieldsComponent>;\r\n}\r\n\r\nexport interface YieldsComponent {\r\n  componentName?: string;\r\n  data?: {[key: string]: number};\r\n  yields?: YieldsRecord;\r\n}",
+            "properties": [],
+            "indexSignatures": [
+                {
+                    "id": "index-declaration-ab9ff59cf433adff051e55cbdb537b114ba0709d4ce36510426bdfccc4a66c771dda8bdbdb49c4ae2dfd16f39d3a59c4ccb376cf82b21154339f48ea38d5a411",
+                    "args": [
+                        {
+                            "name": "key",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "returnType": "Array<YieldsComponent>",
+                    "line": 1,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "kind": 175,
+            "methods": []
+        }
+    ],
+    "injectables": [
+        {
+            "name": "ComponentBuilderService",
+            "id": "injectable-ComponentBuilderService-9ccb69533e366c71674014241d6dcebcdfb5dc54ebfaf72cba503564e40fde5e3ba19ee6c3e5a56b9c4991c04a21057e9bbbc7dd91fe4f98f3b798c5ca48b0d8",
+            "file": "src/app/lib/components/component-builder.service.ts",
+            "properties": [
+                {
+                    "name": "componentTree",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Map<string | Type<>>",
+                    "optional": false,
+                    "description": "",
+                    "line": 13,
+                    "modifierKind": [
+                        121
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "getComponentByName",
+                    "args": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "ComponentInstance",
+                    "typeParameters": [],
+                    "line": 23,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Inject, Injectable, Type, ComponentFactory } from \"@angular/core\";\r\nimport { ComponentEntry } from \"../lib.module\";\r\nimport { YIELDS_COMPONENTS, YIELDS_UNREFERENCED_COMPONENTS } from \"./yields/yields.token\";\r\n\r\nexport interface ComponentInstance {\r\n  instance?: Type<any>;\r\n  componentName: string;\r\n}\r\n\r\n@Injectable()\r\n\r\nexport class ComponentBuilderService {\r\n  private componentTree: Map<string, Type<unknown>>;\r\n\r\n  constructor(\r\n    @Inject(YIELDS_COMPONENTS) private components : ComponentEntry[],\r\n    @Inject(YIELDS_UNREFERENCED_COMPONENTS) private unReferenceComponent: Type<unknown>\r\n  ) {\r\n    this.componentTree = new Map();\r\n    this.components.forEach(component => this.componentTree.set(component.tag, component.instance));\r\n  }\r\n\r\n  getComponentByName (name: string): ComponentInstance {\r\n    let component = this.componentTree.get(name);\r\n    if (!component) {\r\n      component = this.unReferenceComponent;\r\n    }\r\n    return {\r\n      instance: component,\r\n      componentName: name\r\n    }\r\n  }\r\n}",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "components",
+                        "type": "ComponentEntry[]",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "unReferenceComponent",
+                        "type": "Type<>",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 13,
+                "jsdoctags": [
+                    {
+                        "name": "components",
+                        "type": "ComponentEntry[]",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "unReferenceComponent",
+                        "type": "Type<>",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        },
+        {
+            "name": "FirebaseProvider",
+            "id": "injectable-FirebaseProvider-bfab1d8e039cd5a9af4e0f937c86c340c7be26abe5921e84fc517321bcde44ee9a6bfdc7c3c59d2a4e5bd665d956e4980ac77ef141f3db4fde531090f88e78e6",
+            "file": "src/app/data/firebase.provider.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "get",
+                    "args": [
+                        {
+                            "name": "query",
+                            "type": "DataQuery",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 21,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        158
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "query",
+                            "type": "DataQuery",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ],
+                    "inheritance": {
+                        "file": "IDataProvider"
+                    }
+                },
+                {
+                    "name": "getAll",
+                    "args": [
+                        {
+                            "name": "query",
+                            "type": "DataQuery",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any[]>",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        158
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "query",
+                            "type": "DataQuery",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ],
+                    "inheritance": {
+                        "file": "IDataProvider"
+                    }
+                },
+                {
+                    "name": "update",
+                    "args": [
+                        {
+                            "name": "query",
+                            "type": "DataQuery",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 43,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nshould return empty data if not implemented\n",
+                    "description": "<p>should return empty data if not implemented</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "query",
+                            "type": "DataQuery",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "tagName": {
+                                "pos": 754,
+                                "end": 761,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>generic type</p>\n"
+                        }
+                    ],
+                    "inheritance": {
+                        "file": "IDataProvider"
+                    }
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable, NgModule } from '@angular/core';\r\nimport { AngularFireModule } from '@angular/fire/compat';\r\nimport { AngularFirestoreModule, CollectionReference, Query } from '@angular/fire/compat/firestore';\r\nimport { AngularFirestore } from '@angular/fire/compat/firestore';\r\nimport { BehaviorSubject, Observable, combineLatest, switchMap, OperatorFunction } from 'rxjs';\r\nimport { environment } from '../../environments/environment';\r\n\r\nimport { IDataProvider, DataQuery, Condition } from './data.provider';\r\n\r\n@Injectable()\r\n\r\nexport class FirebaseProvider extends IDataProvider {\r\n  \r\n  constructor (private firestore: AngularFirestore) { super(); }\r\n\r\n  override getAll(query: DataQuery): Observable<any[]> {\r\n    const targetedCollection = this.firestore.collection(query.table).valueChanges()\r\n    return targetedCollection;\r\n  }\r\n\r\n  override get(query: DataQuery): Observable<any> {\r\n    let behaviours: any = [];\r\n    behaviours = query.condition?.map( () => new BehaviorSubject(''));\r\n    const items = combineLatest(behaviours)\r\n      .pipe(\r\n        switchMap((conditions) =>\r\n            this.firestore.collection(query.table, ref => {\r\n              let queryConditions: Condition[] = Array.prototype.slice.call(conditions);\r\n              let query : CollectionReference | Query = ref;\r\n              queryConditions.forEach((condition: Condition) => {\r\n                if (condition.value) query = query.where(condition.key, '==', condition.value);\r\n              });\r\n              return query;\r\n            }).valueChanges()\r\n        )\r\n      )\r\n    query.condition?.forEach( (condition, index) => behaviours[index].next(condition));\r\n    return items;\r\n  }\r\n  \r\n}\r\n\r\n@NgModule({\r\n  imports: [\r\n    AngularFireModule.initializeApp(environment.firebaseConfiguration),\r\n    AngularFirestoreModule\r\n  ]\r\n})\r\n\r\nexport class FirebaseModule {};",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "firestore",
+                        "type": "AngularFirestore",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 12,
+                "jsdoctags": [
+                    {
+                        "name": "firestore",
+                        "type": "AngularFirestore",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": "IDataProvider",
+            "type": "injectable"
+        },
+        {
+            "name": "IDataProvider",
+            "id": "injectable-IDataProvider-01efc5fc33d24c1d65cff6c0b019da81e51321b82f5349b68935edc5935d32bb4bc563b4f6edebdf41e97753ab180743cbe1782441e52a42994cac46360cae96",
+            "file": "src/app/data/data.provider.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "get",
+                    "args": [
+                        {
+                            "name": "query",
+                            "type": "DataQuery",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 35,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nshould return empty data if not implemented\n",
+                    "description": "<p>should return empty data if not implemented</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "query",
+                            "type": "DataQuery",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "tagName": {
+                                "pos": 591,
+                                "end": 598,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>generic type</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "getAll",
+                    "args": [
+                        {
+                            "name": "query",
+                            "type": "DataQuery",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any[]>",
+                    "typeParameters": [],
+                    "line": 27,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nshould return empty data if not implemented\n",
+                    "description": "<p>should return empty data if not implemented</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "query",
+                            "type": "DataQuery",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "tagName": {
+                                "pos": 423,
+                                "end": 430,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>generic type</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "update",
+                    "args": [
+                        {
+                            "name": "query",
+                            "type": "DataQuery",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 43,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nshould return empty data if not implemented\n",
+                    "description": "<p>should return empty data if not implemented</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "query",
+                            "type": "DataQuery",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "tagName": {
+                                "pos": 754,
+                                "end": 761,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>generic type</p>\n"
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable, EMPTY } from 'rxjs';\r\n\r\nexport interface Condition {\r\n  key: string,\r\n  value: string\r\n}\r\n\r\nexport interface DataQuery {\r\n  table: string,\r\n  condition?: Array<Condition>\r\n};\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\n/**\r\n * generic data provider class\r\n*/\r\nexport class IDataProvider {\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  getAll(query: DataQuery) : Observable<any[]> {\r\n    return EMPTY;\r\n  }\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  get(query: DataQuery) : Observable<any> {\r\n    return EMPTY;\r\n  }\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  update(query: DataQuery) : Observable<any> {\r\n    return EMPTY;\r\n  }\r\n\r\n}",
+            "type": "injectable"
+        },
+        {
+            "name": "ObjectKeysPipe",
+            "id": "injectable-ObjectKeysPipe-5ea8c78f51d7a2fde8a7f4344d65b06998da15d995bc0ac3d7e09d5315413a8378b02dc097acdbfd706b5eb589bd8efb7f5931c04417502a2b80df66924773f2",
+            "file": "src/app/utils/object-keys.pipe.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "transform",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 11,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable, Pipe } from '@angular/core';\r\n\r\n@Pipe({\r\n  name: 'objectkeys'\r\n})\r\n\r\n@Injectable()\r\n\r\nexport class ObjectKeysPipe {\r\n\r\n  transform(value: any):any {\r\n    const keys = Reflect.ownKeys(value);\r\n    return keys;\r\n  }\r\n\r\n}",
+            "type": "injectable"
+        },
+        {
+            "name": "RouteService",
+            "id": "injectable-RouteService-2846b31a67dc21e5226cacd6ff0a18932a634dd103177d26aca9bbf66f59ccefdef5a5c8e755574b9f73e45e45ea1c093323be80f54442d23e383e28a4d55741",
+            "file": "src/app/routing/route.service.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "extractRouteParameters",
+                    "args": [
+                        {
+                            "name": "url",
+                            "type": "string[]",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Route",
+                    "typeParameters": [],
+                    "line": 11,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "url",
+                            "type": "string[]",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\n\r\nexport class Route {\r\n  url: string;\r\n}\r\n\r\n@Injectable()\r\n\r\nexport class RouteService {\r\n\r\n  extractRouteParameters(url: string[]): Route {\r\n    const routeParameters = new Route();\r\n\r\n    if (url.length === 0) {\r\n      /* should return default value */\r\n      routeParameters.url = '/';\r\n      return routeParameters;\r\n    }\r\n\r\n    routeParameters.url = url.join('/');\r\n\r\n    /* adding default value */\r\n    if (!routeParameters.url.startsWith('/')) {\r\n      routeParameters.url = '/' + routeParameters.url;\r\n    }\r\n\r\n    return routeParameters;\r\n  }\r\n\r\n}",
+            "type": "injectable"
+        }
+    ],
+    "guards": [
+        {
+            "name": "RouteFetcher",
+            "id": "injectable-RouteFetcher-19e283fb31d7e1348e5d9af910dbab2c3087ab824a544dbf840bb3a0a00522d14f1476c8a4486e10952435a89b7133d29d1be7421c67b6dcf9237468499b4e80",
+            "file": "src/app/routing/route-fetcher.service.ts",
+            "properties": [
+                {
+                    "name": "query",
+                    "defaultValue": "{\r\n    table: 'pages'\r\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "DataQuery",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                }
+            ],
+            "methods": [
+                {
+                    "name": "resolve",
+                    "args": [
+                        {
+                            "name": "route",
+                            "type": "ActivatedRouteSnapshot",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "state",
+                            "type": "RouterStateSnapshot",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<RoutingState>",
+                    "typeParameters": [],
+                    "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "route",
+                            "type": "ActivatedRouteSnapshot",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "state",
+                            "type": "RouterStateSnapshot",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';\r\nimport { first, Observable, map } from 'rxjs';\r\n\r\nimport { RoutingState } from './routingState';\r\nimport { IDataProvider, DataQuery } from '../data/data.provider';\r\n\r\n@Injectable()\r\n\r\nexport class RouteFetcher implements Resolve<RoutingState> {\r\n\r\n  query: DataQuery = {\r\n    table: 'pages'\r\n  };\r\n\r\n  constructor(private dataProvider: IDataProvider) { }\r\n\r\n  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<RoutingState> {\r\n    this.query.condition = [];\r\n    this.query.condition.push({\r\n      key: 'url',\r\n      value: route.params['url']\r\n    });\r\n    const routes = this.dataProvider.get(this.query)\r\n      .pipe(first())\r\n      .pipe(map(results => results[0]))\r\n    return routes;\r\n  }\r\n}",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "dataProvider",
+                        "type": "IDataProvider",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 14,
+                "jsdoctags": [
+                    {
+                        "name": "dataProvider",
+                        "type": "IDataProvider",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "guard"
+        }
+    ],
+    "interceptors": [],
+    "classes": [
+        {
+            "name": "ComponentEntry",
+            "id": "class-ComponentEntry-c4fafb5c3633470b1427811ce7d21890353fa3cd57df44073d17fec4d055bc9c3267fdf313f7553b276265ff64b229bfb8ffc00596e7e3a4f09baf12733bd081",
+            "file": "src/app/lib/lib.module.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "import { ModuleWithProviders, NgModule, Type } from \"@angular/core\";\r\n\r\nimport { ComponentBuilderService } from \"./components/component-builder.service\";\r\nimport { YieldsFactoryComponent } from \"./components/yields/yields-factory.component\";\r\nimport { UnreferenceComponent } from \"./components/unreference/unreference.component\";\r\nimport { RichTextDirective } from \"./components/rich-text/rich-text.directive\";\r\nimport { YIELDS_COMPONENTS, YIELDS_UNREFERENCED_COMPONENTS } from \"./components/yields/yields.token\";\r\n\r\nexport class ComponentEntry {\r\n  tag: string;\r\n  instance: Type<unknown>;\r\n}\r\n\r\n@NgModule({\r\n  exports: [\r\n    YieldsFactoryComponent,\r\n    RichTextDirective\r\n  ],\r\n  declarations: [\r\n    YieldsFactoryComponent,\r\n    RichTextDirective\r\n  ]\r\n})\r\n  \r\nexport class LibraryModule {\r\n  static registerComponent (\r\n    components: ComponentEntry[],\r\n  ): ModuleWithProviders<LibraryModule> {\r\n    return {\r\n      ngModule: LibraryModule,\r\n      providers: [\r\n        { provide: YIELDS_COMPONENTS, useValue: components },\r\n        { provide: YIELDS_UNREFERENCED_COMPONENTS, useValue: UnreferenceComponent },\r\n        ComponentBuilderService\r\n      ]\r\n    }\r\n  }\r\n}",
+            "properties": [
+                {
+                    "name": "instance",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Type<>",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "tag",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "Heading",
+            "id": "class-Heading-b3cd16b4632936045fc51211660893b6f26788fa999803b06be4facad429267338c1ba23ce1284e4730896e7c3cd2a69910252f7ff9c546cc2eb5fe148bfe960",
+            "file": "src/app/components/content-block/content-block.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "import { Component, Input, OnInit } from \"@angular/core\";\r\n\r\nclass Heading {\r\n  type: string;\r\n  value: string;\r\n}\r\n\r\n@Component({\r\n  selector: 'content-block',\r\n  templateUrl: './content-block.component.html'\r\n})\r\n\r\nexport class ContentBlockComponent implements OnInit {\r\n  @Input() heading: Heading;\r\n  @Input() description: string;\r\n\r\n  ngOnInit(): void {\r\n      console.warn(this.description)\r\n  }\r\n}",
+            "properties": [
+                {
+                    "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "NavigationItem",
+            "id": "class-NavigationItem-5173d66fae7148123b4688956fd5805b98b54d426c4e6124d2e7ef35b6a2a1306c5601ad29c101d3d365802f3f4f1b72330c75e987e7d7c91f3d5cbb70b6bdf3",
+            "file": "src/app/components/navigation/navigation.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "import { Component, Input, OnChanges, SimpleChanges } from \"@angular/core\";\r\n\r\nclass NavigationItem {\r\n  label: string;\r\n  url: string;\r\n}\r\n\r\n@Component({\r\n  selector: 'navigation',\r\n  templateUrl: './navigation.component.html'\r\n})\r\n\r\nexport class NavigationComponent implements OnChanges {\r\n  @Input() title: string;\r\n  @Input() items: NavigationItem[];\r\n\r\n  ngOnChanges(changes: SimpleChanges): void {\r\n      console.warn(this.title)\r\n  }\r\n}",
+            "properties": [
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "url",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "Route",
+            "id": "class-Route-2846b31a67dc21e5226cacd6ff0a18932a634dd103177d26aca9bbf66f59ccefdef5a5c8e755574b9f73e45e45ea1c093323be80f54442d23e383e28a4d55741",
+            "file": "src/app/routing/route.service.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\n\r\nexport class Route {\r\n  url: string;\r\n}\r\n\r\n@Injectable()\r\n\r\nexport class RouteService {\r\n\r\n  extractRouteParameters(url: string[]): Route {\r\n    const routeParameters = new Route();\r\n\r\n    if (url.length === 0) {\r\n      /* should return default value */\r\n      routeParameters.url = '/';\r\n      return routeParameters;\r\n    }\r\n\r\n    routeParameters.url = url.join('/');\r\n\r\n    /* adding default value */\r\n    if (!routeParameters.url.startsWith('/')) {\r\n      routeParameters.url = '/' + routeParameters.url;\r\n    }\r\n\r\n    return routeParameters;\r\n  }\r\n\r\n}",
+            "properties": [
+                {
+                    "name": "url",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "RoutingState",
+            "id": "class-RoutingState-2bb69578d85acf688c3dbe3cd5554d7b6dd62b70d64bed5b29b0ff0d2d76091e5a824c8037df314777512a528271e2449083b760ec986fe4dbc45cdc86047b05",
+            "file": "src/app/routing/routingState.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "import { YieldsRecord } from \"./yields\";\r\nimport { RoutingException } from './routingException';\r\n\r\nexport class RoutingState {\r\n  name?: string;\r\n  craetedAt?: string;\r\n  modifiedAt?: string;\r\n  id?: string;\r\n  error?: RoutingException;\r\n  yields?: YieldsRecord;\r\n}",
+            "properties": [
+                {
+                    "name": "craetedAt",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "error",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "RoutingException",
+                    "optional": true,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "modifiedAt",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "yields",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "YieldsRecord",
+                    "optional": true,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        }
+    ],
+    "directives": [
+        {
+            "name": "RichTextDirective",
+            "id": "directive-RichTextDirective-33c286e5d2757f9db187320aeaf5cbfa2532a5a7f0fe6e01700a1be83a762c5a6afb733669c245811cb1b1f11594aad2ac799224c6cc853386c8fd81dbd3afad",
+            "file": "src/app/lib/components/rich-text/rich-text.directive.ts",
+            "type": "directive",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Directive, TemplateRef, ViewContainerRef, Input, SimpleChanges, EmbeddedViewRef } from \"@angular/core\";\r\n\r\n@Directive({\r\n  selector: '[richText]'\r\n})\r\n\r\nexport class RichTextDirective {\r\n  private viewRef: EmbeddedViewRef<unknown>;\r\n\r\n  @Input('richText') content : string;\r\n\r\n  constructor(\r\n    private templateRef: TemplateRef<any>,\r\n    private viewContainer: ViewContainerRef) { }\r\n\r\n  ngOnChanges(changes: SimpleChanges) {\r\n    if (changes['content']) {\r\n      if (!this.viewRef) {\r\n        this.viewContainer.clear();\r\n        this.viewRef = this.viewContainer.createEmbeddedView(this.templateRef);\r\n      }\r\n  \r\n      this.refreshView();\r\n    }\r\n  }\r\n\r\n  refreshView () {\r\n    this.viewRef.rootNodes.forEach((node) => {\r\n      node.innerHTML = this.content;\r\n    });\r\n  }\r\n}",
+            "selector": "[richText]",
+            "providers": [],
+            "inputsClass": [
+                {
+                    "name": "richText",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "propertiesClass": [
+                {
+                    "name": "viewRef",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "EmbeddedViewRef<>",
+                    "optional": false,
+                    "description": "",
+                    "line": 8,
+                    "modifierKind": [
+                        121
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnChanges",
+                    "args": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "refreshView",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 27,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "templateRef",
+                        "type": "TemplateRef<any>",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "viewContainer",
+                        "type": "ViewContainerRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 10,
+                "jsdoctags": [
+                    {
+                        "name": "templateRef",
+                        "type": "TemplateRef<any>",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "viewContainer",
+                        "type": "ViewContainerRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "components": [
+        {
+            "name": "AppComponent",
+            "id": "component-AppComponent-33e6f6c6e36dab861820201eda19fdd3df8e5586403ddb77a13110a7eb05377bd483a3b2dac70df46c4f1f1a776009f9404c603960bd828f50bc545c9cdfef52",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-root",
+            "styleUrls": [
+                "./app.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./app.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: ['./app.component.scss']\r\n})\r\nexport class AppComponent { }\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./app.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<router-outlet></router-outlet>\r\n<router-outlet></router-outlet>"
+        },
+        {
+            "name": "ContainerFlexComponent",
+            "id": "component-ContainerFlexComponent-21320f16b4fad6ac9f9e747053e9102ff8769c301e6b4fa12c23f39ebb0583184932d1f9c8d7bfff28353ce952df1d621dfa8cf2949aea2cbf4ea51eb276f7a0",
+            "file": "src/app/components/container-block/container-flex.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "container-flex",
+            "styleUrls": [
+                "./container-flex.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./container-flex.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "numberOfColumn",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "rendering",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "YieldsComponent",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from \"@angular/core\";\r\nimport { YieldsComponent } from \"src/app/routing/yields\";\r\n\r\n@Component({\r\n  selector: 'container-flex',\r\n  templateUrl: './container-flex.component.html',\r\n  styleUrls: ['./container-flex.scss']\r\n})\r\n\r\nexport class ContainerFlexComponent {\r\n  @Input() numberOfColumn: number;\r\n  @Input() rendering: YieldsComponent;\r\n}",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".container-flex {\r\n  display: flex;\r\n  flex-direction: column;\r\n\r\n  @media screen and (min-width: 768px) {\r\n    flex-direction: row;\r\n  }\r\n}\r\n\r\n.flex {\r\n  &-6 {\r\n    flex-basis: 50%;\r\n  }\r\n}",
+                    "styleUrl": "./container-flex.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<div class=\"container-flex\">\r\n  <div *ngFor=\"let yield of rendering.yields | objectkeys; let index = index;\" [ngClass]=\"'flex-' + (12 / numberOfColumn).toString()\">\r\n    <yield-factory key = {{yield}} [context]=\"rendering\"></yield-factory>\r\n  </div>\r\n</div>"
+        },
+        {
+            "name": "ContentBlockComponent",
+            "id": "component-ContentBlockComponent-b3cd16b4632936045fc51211660893b6f26788fa999803b06be4facad429267338c1ba23ce1284e4730896e7c3cd2a69910252f7ff9c546cc2eb5fe148bfe960",
+            "file": "src/app/components/content-block/content-block.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "content-block",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./content-block.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "description",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "heading",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "Heading",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from \"@angular/core\";\r\n\r\nclass Heading {\r\n  type: string;\r\n  value: string;\r\n}\r\n\r\n@Component({\r\n  selector: 'content-block',\r\n  templateUrl: './content-block.component.html'\r\n})\r\n\r\nexport class ContentBlockComponent implements OnInit {\r\n  @Input() heading: Heading;\r\n  @Input() description: string;\r\n\r\n  ngOnInit(): void {\r\n      console.warn(this.description)\r\n  }\r\n}",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<!-- {{heading.type}} -->\r\n\r\n<!-- <h1 *ngIf=\"(heading.type | lowercase ) === 'h1'\"> {{heading.value}} </h1>\r\n<h2 *ngIf=\"(heading.type | lowercase ) === 'h2'\"> {{heading.value}} </h2>\r\n<div *richText=\"description\"></div> -->"
+        },
+        {
+            "name": "NavigationComponent",
+            "id": "component-NavigationComponent-5173d66fae7148123b4688956fd5805b98b54d426c4e6124d2e7ef35b6a2a1306c5601ad29c101d3d365802f3f4f1b72330c75e987e7d7c91f3d5cbb70b6bdf3",
+            "file": "src/app/components/navigation/navigation.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "navigation",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./navigation.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "items",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "NavigationItem[]",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnChanges",
+                    "args": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnChanges, SimpleChanges } from \"@angular/core\";\r\n\r\nclass NavigationItem {\r\n  label: string;\r\n  url: string;\r\n}\r\n\r\n@Component({\r\n  selector: 'navigation',\r\n  templateUrl: './navigation.component.html'\r\n})\r\n\r\nexport class NavigationComponent implements OnChanges {\r\n  @Input() title: string;\r\n  @Input() items: NavigationItem[];\r\n\r\n  ngOnChanges(changes: SimpleChanges): void {\r\n      console.warn(this.title)\r\n  }\r\n}",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "implements": [
+                "OnChanges"
+            ],
+            "templateData": "\r\n<p>{{title}}</p>\r\n<nav>\r\n  <ul>\r\n    <li *ngFor=\"let item of items\">\r\n      <a routerLink={{item.url}}>{{item.label}}</a>\r\n    </li>\r\n  </ul>\r\n</nav>"
+        },
+        {
+            "name": "NotFoundComponent",
+            "id": "component-NotFoundComponent-931ba1179a77e050c1c650f7cee8fdb06545c8332d0184feeef833ce89a06bb95051ade498c79d3349bce264768ae3386238bc987bdf5219f188b1c9475c9ea9",
+            "file": "src/app/routing/not-found/not-found.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-not-found",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./not-found.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "information",
+                    "defaultValue": "{}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "RoutingException",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\r\nimport { RoutingException } from '../routingException';\r\n\r\n@Component({\r\n  selector: 'app-not-found',\r\n  templateUrl: './not-found.component.html',\r\n})\r\n\r\nexport class NotFoundComponent {\r\n  @Input() information: RoutingException = {};\r\n}",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "templateData": "<h1> Not found </h1>\r\n<p> This page does not exist. </p>\r\n<p> {{information?.message}} </p>\r\n<p> {{information?.url}} </p>\r\n"
+        },
+        {
+            "name": "RenderingComponent",
+            "id": "component-RenderingComponent-5bb4cb7fc8d980521739d60f400a7b9cc486afc56f397e082d09042e4c0f480a13f84db8eb1628d4d73207bfa7e79ae01eb0af93acfe9a3848c6629d55fcadaf",
+            "file": "src/app/routing/rendering/rendering-component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-rendering",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./rendering-component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "renderingStatus",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Status",
+                    "optional": false,
+                    "description": "",
+                    "line": 20
+                },
+                {
+                    "name": "state",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "RoutingState",
+                    "optional": false,
+                    "description": "",
+                    "line": 19
+                },
+                {
+                    "name": "Status",
+                    "defaultValue": "Status",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 22
+                },
+                {
+                    "name": "subscription",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Subscription",
+                    "optional": false,
+                    "description": "",
+                    "line": 21
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 38,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { OnInit, Component, OnDestroy } from \"@angular/core\";\r\nimport { ActivatedRoute } from '@angular/router';\r\nimport { Subscription } from \"rxjs\";\r\nimport { RoutingState } from \"../routingState\";\r\n\r\nenum Status {\r\n  Render,\r\n  NotFound,\r\n  Error\r\n}\r\n\r\n@Component({\r\n  selector: 'app-rendering',\r\n  templateUrl: './rendering-component.html',\r\n})\r\n\r\nexport class RenderingComponent implements OnInit, OnDestroy {\r\n\r\n  state: RoutingState;\r\n  renderingStatus: Status;\r\n  subscription: Subscription;\r\n  Status = Status;\r\n\r\n  constructor(private activatedRoute: ActivatedRoute) { }\r\n\r\n  ngOnInit(): void {\r\n    this.subscription = this.activatedRoute.data.subscribe((data) => {\r\n      let routeData : RoutingState = data['routeState'];\r\n      if (!routeData) {\r\n        this.renderingStatus = Status.NotFound;\r\n        return;\r\n      }\r\n      this.state = routeData;\r\n      this.renderingStatus = Status.Render;\r\n    });\r\n  }\r\n\r\n  ngOnDestroy() {\r\n    // important to unsubscribe when the component is destroyed\r\n    this.subscription.unsubscribe();\r\n  }\r\n\r\n}",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "activatedRoute",
+                        "type": "ActivatedRoute",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 22,
+                "jsdoctags": [
+                    {
+                        "name": "activatedRoute",
+                        "type": "ActivatedRoute",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit",
+                "OnDestroy"
+            ],
+            "templateData": "<ng-container *ngIf=\"renderingStatus === Status.Render\">\r\n  <yield-factory key=\"yield-main\" [context]=\"state\"></yield-factory>\r\n</ng-container>\r\n<app-not-found *ngIf=\"renderingStatus === Status.NotFound\"></app-not-found>\r\n<app-server-error *ngIf=\"renderingStatus === Status.Error\"></app-server-error>"
+        },
+        {
+            "name": "ServerErrorComponent",
+            "id": "component-ServerErrorComponent-226752496f1e748511777c7e1a57710a0e7eb3e9a451da515fdce9e799b48702081f200562e2ff9624f0d47c686894b43d435308050f973db6c2167ccd9e3455",
+            "file": "src/app/routing/server-error/server-error.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-server-error",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./server-error.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "information",
+                    "defaultValue": "{}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 9,
+                    "type": "RoutingException",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\r\nimport { RoutingException } from '../routingException';\r\n\r\n@Component({\r\n  selector: 'app-server-error',\r\n  templateUrl: './server-error.component.html',\r\n})\r\nexport class ServerErrorComponent {\r\n  @Input() information: RoutingException = {};\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "templateData": "<p>\r\n  500: Internal Server Error\r\n  {{information?.message}}\r\n</p>\r\n  "
+        },
+        {
+            "name": "UnreferenceComponent",
+            "id": "component-UnreferenceComponent-b52781d5aeed284940eb661507e2413d8564aa9b6861929483f51956c90fb1c4c0eec49651a19df46305369ac5d56a35305997cb6a23824caba7247c10449290",
+            "file": "src/app/lib/components/unreference/unreference.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "unreference-component",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./unreference.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "rendering",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "YieldsComponent",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from \"@angular/core\";\r\nimport { YieldsComponent } from \"src/app/routing/yields\";\r\n\r\n@Component({\r\n  selector: 'unreference-component',\r\n  templateUrl: './unreference.component.html'\r\n})\r\n\r\nexport class UnreferenceComponent {\r\n  @Input() rendering: YieldsComponent;\r\n}",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "templateData": "<div\r\n  style=\"background: red; padding: 10px; color: white; max-width: 200px;\"\r\n>\r\n  <h2>{{ rendering.componentName }}</h2>\r\n  <p>Component should be reference on components module.</p>\r\n</div>"
+        },
+        {
+            "name": "YieldsFactoryComponent",
+            "id": "component-YieldsFactoryComponent-c156bcee6fbd4589c7f5047e6ee9784dcdc5db53ed6809536cdcc22d0ebb964014f6c3112ec273e3f74f72ff7ffcca3795920dd90ba4830ede2bf11deee4bb3d",
+            "file": "src/app/lib/components/yields/yields-factory.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "yield-factory",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./yields-factory.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "context",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "RoutingState",
+                    "decorators": []
+                },
+                {
+                    "name": "key",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "portal",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ViewContainerRef",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'portal', {read: ViewContainerRef, static: true}"
+                        }
+                    ],
+                    "modifierKind": [
+                        121
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getYieldsComponent",
+                    "args": [
+                        {
+                            "name": "yields",
+                            "type": "YieldsRecord",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Array<YieldsComponent>",
+                    "typeParameters": [],
+                    "line": 44,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "yields",
+                            "type": "YieldsRecord",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "render",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 25,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef, Type } from \"@angular/core\";\r\nimport { RoutingState } from \"src/app/routing/routingState\";\r\nimport { YieldsRecord, YieldsComponent } from \"src/app/routing/yields\";\r\nimport { ComponentBuilderService } from \"../component-builder.service\";\r\n\r\n@Component({\r\n  selector: 'yield-factory',\r\n  templateUrl: './yields-factory.component.html'\r\n})\r\n\r\nexport class YieldsFactoryComponent implements OnInit {\r\n  @ViewChild('portal', { read: ViewContainerRef, static: true }) private portal: ViewContainerRef;\r\n  @Input() key?: string;\r\n  @Input() context?: RoutingState;\r\n\r\n  constructor(\r\n    private componentFactoryResolver: ComponentFactoryResolver,\r\n    private componentBuilder: ComponentBuilderService\r\n  ) { }\r\n\r\n  ngOnInit(): void {\r\n    this.render();\r\n  }\r\n\r\n  render () {\r\n    const yields: YieldsRecord = this.context?.yields as YieldsRecord;\r\n    const yieldsComponents: Array<YieldsComponent> = this.getYieldsComponent(yields);\r\n    yieldsComponents.forEach( (yieldComponent: YieldsComponent, index) => {\r\n      const componentInstance = this.componentBuilder.getComponentByName(yieldComponent.componentName ?? '');\r\n      const componentImplementation = this.componentFactoryResolver.resolveComponentFactory(componentInstance.instance as Type<any>);\r\n      this.portal.clear();\r\n      const componentRef = this.portal.createComponent(componentImplementation, index);\r\n      for ( let key in yieldComponent.data) {\r\n        const dataValue = yieldComponent.data[key];\r\n        componentRef.instance[key] = dataValue;\r\n      }\r\n      componentRef.instance.rendering = {\r\n        componentName: yieldComponent.componentName,\r\n        yields: yieldComponent.yields\r\n      }\r\n    });\r\n  }\r\n\r\n  getYieldsComponent (yields: YieldsRecord): Array<YieldsComponent>  {\r\n    let result: Array<YieldsComponent> = [];\r\n    for ( let yieldKey in yields) {\r\n      let currentYield: YieldsComponent[] = yields[yieldKey];\r\n      if (yieldKey === this.key) {\r\n        result = currentYield;\r\n        break;\r\n      }\r\n    }\r\n    return result;\r\n  }\r\n}",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "componentFactoryResolver",
+                        "type": "ComponentFactoryResolver",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "componentBuilder",
+                        "type": "ComponentBuilderService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 14,
+                "jsdoctags": [
+                    {
+                        "name": "componentFactoryResolver",
+                        "type": "ComponentFactoryResolver",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "componentBuilder",
+                        "type": "ComponentBuilderService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<ng-template #portal></ng-template>"
+        }
+    ],
+    "modules": [
+        {
+            "name": "AppModule",
+            "id": "module-AppModule-bcf2d996eca19ae3344706c7a58c6f99a3a3bdbbfde5ef88423bbeb79e36bb86207c83e938b8dfac8c7cd3949475519f75bcbae952cdde03fd9df28154215994",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\n\r\nimport { AppComponent } from './app.component';\r\nimport { DataModule } from './data/data.module';\r\nimport { RoutingModule } from './routing/routing.module';\r\nimport { ComponentsModule } from './components/components.module';\r\nimport { UtilsModule } from './utils/utils.module';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    DataModule,\r\n    RoutingModule,\r\n    ComponentsModule,\r\n    UtilsModule\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule { }\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "DataModule"
+                        },
+                        {
+                            "name": "RoutingModule"
+                        },
+                        {
+                            "name": "UtilsModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "ComponentsModule",
+            "id": "module-ComponentsModule-1e5046b8afdc541714d1fef9376a94f9d98ce83edcc9946a6c8d4b5931f8d864e23e7b717eac14e72f78b84656875f48404a8d5059ebcdd79ba73698290e4175",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/components/components.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from \"@angular/core\";\r\nimport { CommonModule } from \"@angular/common\";\r\n\r\nimport { NavigationComponent } from \"./navigation/navigation.component\";\r\nimport { ContainerFlexComponent } from \"./container-block/container-flex.component\";\r\nimport { ContentBlockComponent } from \"./content-block/content-block.component\";\r\nimport { LibraryModule } from \"../lib/lib.module\";\r\nimport { UtilsModule } from \"../utils/utils.module\";\r\nimport { RouterModule } from \"@angular/router\";\r\n\r\n@NgModule({\r\n  imports: [\r\n    LibraryModule.registerComponent([\r\n      { tag: 'ContainerFlex', instance: ContainerFlexComponent },\r\n      { tag: 'Navigation', instance: NavigationComponent },\r\n      { tag: 'ContentBlock', instance: ContentBlockComponent }\r\n    ]),\r\n    CommonModule,\r\n    UtilsModule,\r\n    RouterModule\r\n  ],\r\n  declarations: [\r\n    ContainerFlexComponent,\r\n    NavigationComponent,\r\n    ContentBlockComponent\r\n  ]\r\n})\r\n\r\nexport class ComponentsModule { };",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ContainerFlexComponent"
+                        },
+                        {
+                            "name": "ContentBlockComponent"
+                        },
+                        {
+                            "name": "NavigationComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "LibraryModule"
+                        },
+                        {
+                            "name": "UtilsModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "DataModule",
+            "id": "module-DataModule-81128a4fca93f66786abd8a3c18200e728be88beb983b08cd79388db1981c791855f301184dd467ebcd9fac72d5cd4db0f32f8f6ed6fd3abaf8a4f5dccd81628",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/data/data.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { FirebaseModule, FirebaseProvider } from './firebase.provider';\r\nimport { IDataProvider } from './data.provider';\r\n\r\n@NgModule({\r\n  imports: [\r\n    FirebaseModule\r\n  ],\r\n  providers: [\r\n    { provide: IDataProvider, useClass: FirebaseProvider }\r\n  ]\r\n})\r\n\r\nexport class DataModule {};",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "FirebaseModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "FirebaseModule",
+            "id": "module-FirebaseModule-bfab1d8e039cd5a9af4e0f937c86c340c7be26abe5921e84fc517321bcde44ee9a6bfdc7c3c59d2a4e5bd665d956e4980ac77ef141f3db4fde531090f88e78e6",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/data/firebase.provider.ts",
+            "methods": [],
+            "sourceCode": "import { Injectable, NgModule } from '@angular/core';\r\nimport { AngularFireModule } from '@angular/fire/compat';\r\nimport { AngularFirestoreModule, CollectionReference, Query } from '@angular/fire/compat/firestore';\r\nimport { AngularFirestore } from '@angular/fire/compat/firestore';\r\nimport { BehaviorSubject, Observable, combineLatest, switchMap, OperatorFunction } from 'rxjs';\r\nimport { environment } from '../../environments/environment';\r\n\r\nimport { IDataProvider, DataQuery, Condition } from './data.provider';\r\n\r\n@Injectable()\r\n\r\nexport class FirebaseProvider extends IDataProvider {\r\n  \r\n  constructor (private firestore: AngularFirestore) { super(); }\r\n\r\n  override getAll(query: DataQuery): Observable<any[]> {\r\n    const targetedCollection = this.firestore.collection(query.table).valueChanges()\r\n    return targetedCollection;\r\n  }\r\n\r\n  override get(query: DataQuery): Observable<any> {\r\n    let behaviours: any = [];\r\n    behaviours = query.condition?.map( () => new BehaviorSubject(''));\r\n    const items = combineLatest(behaviours)\r\n      .pipe(\r\n        switchMap((conditions) =>\r\n            this.firestore.collection(query.table, ref => {\r\n              let queryConditions: Condition[] = Array.prototype.slice.call(conditions);\r\n              let query : CollectionReference | Query = ref;\r\n              queryConditions.forEach((condition: Condition) => {\r\n                if (condition.value) query = query.where(condition.key, '==', condition.value);\r\n              });\r\n              return query;\r\n            }).valueChanges()\r\n        )\r\n      )\r\n    query.condition?.forEach( (condition, index) => behaviours[index].next(condition));\r\n    return items;\r\n  }\r\n  \r\n}\r\n\r\n@NgModule({\r\n  imports: [\r\n    AngularFireModule.initializeApp(environment.firebaseConfiguration),\r\n    AngularFirestoreModule\r\n  ]\r\n})\r\n\r\nexport class FirebaseModule {};",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "LibraryModule",
+            "id": "module-LibraryModule-c4fafb5c3633470b1427811ce7d21890353fa3cd57df44073d17fec4d055bc9c3267fdf313f7553b276265ff64b229bfb8ffc00596e7e3a4f09baf12733bd081",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/lib/lib.module.ts",
+            "methods": [
+                {
+                    "name": "registerComponent",
+                    "args": [
+                        {
+                            "name": "components",
+                            "type": "ComponentEntry[]",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "ModuleWithProviders<LibraryModule>",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        124
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "components",
+                            "type": "ComponentEntry[]",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "sourceCode": "import { ModuleWithProviders, NgModule, Type } from \"@angular/core\";\r\n\r\nimport { ComponentBuilderService } from \"./components/component-builder.service\";\r\nimport { YieldsFactoryComponent } from \"./components/yields/yields-factory.component\";\r\nimport { UnreferenceComponent } from \"./components/unreference/unreference.component\";\r\nimport { RichTextDirective } from \"./components/rich-text/rich-text.directive\";\r\nimport { YIELDS_COMPONENTS, YIELDS_UNREFERENCED_COMPONENTS } from \"./components/yields/yields.token\";\r\n\r\nexport class ComponentEntry {\r\n  tag: string;\r\n  instance: Type<unknown>;\r\n}\r\n\r\n@NgModule({\r\n  exports: [\r\n    YieldsFactoryComponent,\r\n    RichTextDirective\r\n  ],\r\n  declarations: [\r\n    YieldsFactoryComponent,\r\n    RichTextDirective\r\n  ]\r\n})\r\n  \r\nexport class LibraryModule {\r\n  static registerComponent (\r\n    components: ComponentEntry[],\r\n  ): ModuleWithProviders<LibraryModule> {\r\n    return {\r\n      ngModule: LibraryModule,\r\n      providers: [\r\n        { provide: YIELDS_COMPONENTS, useValue: components },\r\n        { provide: YIELDS_UNREFERENCED_COMPONENTS, useValue: UnreferenceComponent },\r\n        ComponentBuilderService\r\n      ]\r\n    }\r\n  }\r\n}",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "RichTextDirective"
+                        },
+                        {
+                            "name": "YieldsFactoryComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "RichTextDirective"
+                        },
+                        {
+                            "name": "YieldsFactoryComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "RoutingModule",
+            "id": "module-RoutingModule-3476ff3b37a38667f78cec25e5cb5d47b3a67625e0330d91e008ae486c287f1ccf093d1f41a2776fb74f47573a22571f8392ee0c7422ce5f13da703f6dcf62e3",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/routing/routing.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes, UrlSegment, UrlMatchResult } from '@angular/router';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\n\r\nimport { NotFoundComponent } from './not-found/not-found.component';\r\nimport { ServerErrorComponent } from './server-error/server-error.component';\r\nimport { RenderingComponent } from './rendering/rendering-component';\r\nimport { RouteFetcher } from './route-fetcher.service';\r\nimport { Route, RouteService } from './route.service';\r\nimport { LibraryModule } from '../lib/lib.module';\r\n\r\nexport function RouteFinder(url: UrlSegment[]): UrlMatchResult {\r\n  const routeService = new RouteService();\r\n  const routeParameters = routeService.extractRouteParameters(url.map((segment) => segment.toString()));\r\n  if (routeParameters == null)\r\n    return null as unknown as UrlMatchResult;\r\n\r\n  const posParams: { [key: string]: UrlSegment } = {}\r\n\r\n  Object.keys(routeParameters).forEach((key) => {\r\n    posParams[key] = new UrlSegment(routeParameters[key as keyof Route], {});\r\n  });\r\n  \r\n  return {\r\n    consumed: url,\r\n    posParams\r\n  };\r\n}\r\n\r\nconst applicationRoutes: Routes = [\r\n  { path: 'notfound', component: NotFoundComponent },\r\n  { path: 'error', component: ServerErrorComponent },\r\n  {\r\n    matcher: RouteFinder,\r\n    component: RenderingComponent,\r\n    resolve: {\r\n      routeState: RouteFetcher\r\n    },\r\n    runGuardsAndResolvers: 'always',\r\n  }\r\n]\r\n\r\n@NgModule({\r\n  imports: [\r\n    RouterModule.forRoot(applicationRoutes, { onSameUrlNavigation: 'reload', initialNavigation: 'enabled' }),\r\n    BrowserModule,\r\n    LibraryModule\r\n  ],\r\n  exports: [\r\n    RouterModule\r\n  ],\r\n  declarations: [\r\n    NotFoundComponent,\r\n    ServerErrorComponent,\r\n    RenderingComponent\r\n  ],\r\n  providers: [\r\n    RouteFetcher,\r\n    RouteService\r\n  ]\r\n})\r\n\r\nexport class RoutingModule { }",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": [
+                        {
+                            "name": "RouteService"
+                        }
+                    ]
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "NotFoundComponent"
+                        },
+                        {
+                            "name": "RenderingComponent"
+                        },
+                        {
+                            "name": "ServerErrorComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "LibraryModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "UtilsModule",
+            "id": "module-UtilsModule-7ce1170ba372e220d3292d6993d56dbd72553e38e04ca366a33206269e5bbd978aa00113689e796ff59b52d78e579f54a30b802d34128b8a25506406ce5cd82a",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/utils/utils.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from \"@angular/core\";\r\nimport { ObjectKeysPipe } from \"./object-keys.pipe\";\r\n\r\n@NgModule({\r\n  declarations: [\r\n    ObjectKeysPipe\r\n  ],\r\n  exports: [\r\n    ObjectKeysPipe\r\n  ]\r\n})\r\n\r\nexport class UtilsModule { }",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ObjectKeysPipe"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "ObjectKeysPipe"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "contentBlock",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/content-block/ContentBlock.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "context",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: true\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  production: false,\r\n  firebaseConfiguration: {\r\n    apiKey: 'AIzaSyDqPst1JL0EWfa9h-ZYVM2p7-QNXFARLTM',\r\n    authDomain: 'headless-angular.firebaseapp.com',\r\n    databaseURL: 'https://headless-angular-default-rtdb.firebaseio.com',\r\n    projectId: 'headless-angular',\r\n    storageBucket: 'headless-angular.appspot.com',\r\n    messagingSenderId: '60892068353'\r\n  }\r\n}"
+            },
+            {
+                "name": "navigation",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/navigation/Navigation.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "require",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "literal type"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/content-block/ContentBlock.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ContentBlockComponent>",
+                "defaultValue": "args => ({\r\n  props: {\r\n    description: '<p>Lol</p>'\r\n  },\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/navigation/Navigation.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<NavigationComponent>",
+                "defaultValue": "args => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "YIELDS_COMPONENTS",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/lib/components/yields/yields.token.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "new InjectionToken<ComponentEntry[]>(\r\n  'yield.factory.components'\r\n)"
+            },
+            {
+                "name": "YIELDS_UNREFERENCED_COMPONENTS",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/lib/components/yields/yields.token.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "new InjectionToken<Type<unknown>>(\r\n  'yields.factory.components.unreference'\r\n)"
+            }
+        ],
+        "functions": [
+            {
+                "name": "RouteFinder",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "file": "src/app/routing/routing.module.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "args": [
+                    {
+                        "name": "url",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "returnType": "UrlMatchResult",
+                "jsdoctags": [
+                    {
+                        "name": "url",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
+        ],
+        "typealiases": [],
+        "enumerations": [
+            {
+                "name": "Status",
+                "childs": [
+                    {
+                        "name": "Render",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "NotFound",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "Error",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "ctype": "miscellaneous",
+                "subtype": "enum",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "file": "src/app/routing/rendering/rendering-component.ts"
+            }
+        ],
+        "groupedVariables": {
+            "src/app/components/content-block/ContentBlock.stories.ts": [
+                {
+                    "name": "contentBlock",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/content-block/ContentBlock.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/content-block/ContentBlock.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ContentBlockComponent>",
+                    "defaultValue": "args => ({\r\n  props: {\r\n    description: '<p>Lol</p>'\r\n  },\r\n})"
+                }
+            ],
+            "src/test.ts": [
+                {
+                    "name": "context",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                },
+                {
+                    "name": "require",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: true\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  production: false,\r\n  firebaseConfiguration: {\r\n    apiKey: 'AIzaSyDqPst1JL0EWfa9h-ZYVM2p7-QNXFARLTM',\r\n    authDomain: 'headless-angular.firebaseapp.com',\r\n    databaseURL: 'https://headless-angular-default-rtdb.firebaseio.com',\r\n    projectId: 'headless-angular',\r\n    storageBucket: 'headless-angular.appspot.com',\r\n    messagingSenderId: '60892068353'\r\n  }\r\n}"
+                }
+            ],
+            "src/app/components/navigation/Navigation.stories.ts": [
+                {
+                    "name": "navigation",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/navigation/Navigation.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/navigation/Navigation.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<NavigationComponent>",
+                    "defaultValue": "args => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "src/app/lib/components/yields/yields.token.ts": [
+                {
+                    "name": "YIELDS_COMPONENTS",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/lib/components/yields/yields.token.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "new InjectionToken<ComponentEntry[]>(\r\n  'yield.factory.components'\r\n)"
+                },
+                {
+                    "name": "YIELDS_UNREFERENCED_COMPONENTS",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/lib/components/yields/yields.token.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "new InjectionToken<Type<unknown>>(\r\n  'yields.factory.components.unreference'\r\n)"
+                }
+            ]
+        },
+        "groupedFunctions": {
+            "src/app/routing/routing.module.ts": [
+                {
+                    "name": "RouteFinder",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "file": "src/app/routing/routing.module.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "url",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "returnType": "UrlMatchResult",
+                    "jsdoctags": [
+                        {
+                            "name": "url",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "groupedEnumerations": {
+            "src/app/routing/rendering/rendering-component.ts": [
+                {
+                    "name": "Status",
+                    "childs": [
+                        {
+                            "name": "Render",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "NotFound",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "Error",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "ctype": "miscellaneous",
+                    "subtype": "enum",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "file": "src/app/routing/rendering/rendering-component.ts"
+                }
+            ]
+        },
+        "groupedTypeAliases": {}
+    },
+    "routes": {
+        "name": "<root>",
+        "kind": "module",
+        "className": "AppModule",
+        "children": [
+            {
+                "name": "applicationRoutes",
+                "filename": "src/app/routing/routing.module.ts",
+                "module": "RoutingModule",
+                "children": [
+                    {
+                        "path": "notfound",
+                        "component": "NotFoundComponent"
+                    },
+                    {
+                        "path": "error",
+                        "component": "ServerErrorComponent"
+                    },
+                    {
+                        "matcher": "RouteFinder",
+                        "component": "RenderingComponent",
+                        "resolve": {
+                            "routeState": "RouteFetcher"
+                        },
+                        "runGuardsAndResolvers": "always"
+                    }
+                ],
+                "kind": "module"
+            }
+        ]
+    },
+    "coverage": {
+        "count": 2,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "src/app/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/container-block/container-flex.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ContainerFlexComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/content-block/ContentBlock.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "contentBlock",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/content-block/ContentBlock.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/content-block/content-block.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ContentBlockComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/content-block/content-block.component.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "Heading",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/navigation/Navigation.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "navigation",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/navigation/Navigation.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/navigation/navigation.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "NavigationComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/navigation/navigation.component.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "NavigationItem",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/data/data.provider.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "IDataProvider",
+                "coveragePercent": 75,
+                "coverageCount": "3/4",
+                "status": "good"
+            },
+            {
+                "filePath": "src/app/data/data.provider.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Condition",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/data/data.provider.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "DataQuery",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/data/firebase.provider.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "FirebaseProvider",
+                "coveragePercent": 20,
+                "coverageCount": "1/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lib/components/component-builder.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "ComponentBuilderService",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lib/components/component-builder.service.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ComponentInstance",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lib/components/rich-text/rich-text.directive.ts",
+                "type": "directive",
+                "linktype": "directive",
+                "name": "RichTextDirective",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lib/components/unreference/unreference.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "UnreferenceComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lib/components/yields/yields-factory.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "YieldsFactoryComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lib/components/yields/yields.token.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "YIELDS_COMPONENTS",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lib/components/yields/yields.token.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "YIELDS_UNREFERENCED_COMPONENTS",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lib/lib.module.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "ComponentEntry",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/routing/not-found/not-found.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "NotFoundComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/routing/rendering/rendering-component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "RenderingComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/routing/route-fetcher.service.ts",
+                "type": "guard",
+                "linktype": "guard",
+                "name": "RouteFetcher",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/routing/route.service.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "Route",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/routing/route.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "RouteService",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/routing/routing.module.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "RouteFinder",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/routing/routingException.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "RoutingException",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/routing/routingState.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "RoutingState",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/routing/server-error/server-error.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ServerErrorComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/routing/yields.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "YieldsComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/routing/yields.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "YieldsRecord",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/utils/object-keys.pipe.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "ObjectKeysPipe",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/utils/object-keys.pipe.ts",
+                "type": "pipe",
+                "linktype": "pipe",
+                "name": "ObjectKeysPipe",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.prod.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "context",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "require",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}

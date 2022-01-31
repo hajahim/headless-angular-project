@@ -18,30 +18,24 @@ export interface DataQuery {
 /**
  * generic data provider class
 */
-export class IDataProvider {
+export abstract class IDataProvider {
 
   /**
    * should return empty data if not implemented
    * @returns generic type
    */
-  getAll(query: DataQuery) : Observable<any[]> {
-    return EMPTY;
-  }
+   abstract getAll(query: DataQuery) : Observable<any[]>;
 
   /**
    * should return empty data if not implemented
    * @returns generic type
    */
-  get(query: DataQuery) : Observable<any> {
-    return EMPTY;
-  }
+   abstract get(query: DataQuery) : Observable<any>;
 
   /**
    * should return empty data if not implemented
    * @returns generic type
    */
-  update(query: DataQuery) : Observable<any> {
-    return EMPTY;
-  }
+  abstract update(query: DataQuery) : Observable<any>;
 
 }

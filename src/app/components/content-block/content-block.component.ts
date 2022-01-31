@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 
-class Heading {
+export class Heading {
   type: string;
   value: string;
 }
@@ -11,6 +11,6 @@ class Heading {
 })
 
 export class ContentBlockComponent {
-  @Input() heading: Heading;
+  @Input() heading: Heading = new Heading();
   @Input() description: string;
 }
