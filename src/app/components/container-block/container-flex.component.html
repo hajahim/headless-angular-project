@@ -1,0 +1,5 @@
+<div class="container-flex">
+  <div *ngFor="let yield of rendering.yields | objectkeys; let index = index;" [ngClass]="'flex-' + (12 / numberOfColumn).toString()">
+    <yield-factory key = {{yield}} [context]="rendering"></yield-factory>
+  </div>
+</div>

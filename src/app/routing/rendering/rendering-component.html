@@ -1,0 +1,5 @@
+<ng-container *ngIf="renderingStatus === Status.Render">
+  <yield-factory key="yield-main" [context]="state"></yield-factory>
+</ng-container>
+<app-not-found *ngIf="renderingStatus === Status.NotFound"></app-not-found>
+<app-server-error *ngIf="renderingStatus === Status.Error"></app-server-error>
