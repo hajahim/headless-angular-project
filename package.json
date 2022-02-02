@@ -7,11 +7,11 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "heroku-postbuild": "ng build --prod",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "npm run docs:json && start-storybook -p 6006",
     "build-storybook": "npm run docs:json && build-storybook"
   },
-  "heroku-postbuild": "ng build --prod",
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.1.0",
