@@ -10,11 +10,13 @@
     "heroku-postbuild": "ng build --prod",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "npm run docs:json && start-storybook -p 6006",
-    "build-storybook": "npm run docs:json && build-storybook",
-    "postinstall": "ng build --prod"
+    "build-storybook": "npm run docs:json && build-storybook"
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "~13.1.4",
+    "@angular/compiler-cli": "~13.1.0",
+    "typescript": "~4.5.2",
     "@angular/animations": "~13.1.0",
     "@angular/common": "~13.1.0",
     "@angular/compiler": "~13.1.0",
@@ -35,8 +37,6 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.1.4",
-    "@angular/cli": "~13.1.4",
-    "@angular/compiler-cli": "~13.1.0",
     "@angular/elements": "^13.2.0",
     "@babel/core": "^7.16.12",
     "@compodoc/compodoc": "^1.1.18",
@@ -56,7 +56,6 @@
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "storybook-addon-angular-router": "^1.4.0",
-    "typescript": "~4.5.2"
+    "storybook-addon-angular-router": "^1.4.0"
   }
 }

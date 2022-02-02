@@ -79,12 +79,12 @@
         },
         {
             "name": "Condition",
-            "id": "interface-Condition-01efc5fc33d24c1d65cff6c0b019da81e51321b82f5349b68935edc5935d32bb4bc563b4f6edebdf41e97753ab180743cbe1782441e52a42994cac46360cae96",
+            "id": "interface-Condition-ea12f208e1c51d0d869262a05424d98d8cdef373650c3c8642da31b718aa9d85e6e885285e6dc946b321290e7c4c1b574ae4fee3612110cd4efa3f7d8bacb60f",
             "file": "src/app/data/data.provider.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable, EMPTY } from 'rxjs';\r\n\r\nexport interface Condition {\r\n  key: string,\r\n  value: string\r\n}\r\n\r\nexport interface DataQuery {\r\n  table: string,\r\n  condition?: Array<Condition>\r\n};\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\n/**\r\n * generic data provider class\r\n*/\r\nexport class IDataProvider {\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  getAll(query: DataQuery) : Observable<any[]> {\r\n    return EMPTY;\r\n  }\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  get(query: DataQuery) : Observable<any> {\r\n    return EMPTY;\r\n  }\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  update(query: DataQuery) : Observable<any> {\r\n    return EMPTY;\r\n  }\r\n\r\n}",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable, EMPTY } from 'rxjs';\r\n\r\nexport interface Condition {\r\n  key: string,\r\n  value: string\r\n}\r\n\r\nexport interface DataQuery {\r\n  table: string,\r\n  condition?: Array<Condition>\r\n};\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\n/**\r\n * generic data provider class\r\n*/\r\nexport abstract class IDataProvider {\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract getAll(query: DataQuery) : Observable<any[]>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract get(query: DataQuery) : Observable<any>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  abstract update(query: DataQuery) : Observable<any>;\r\n\r\n}",
             "properties": [
                 {
                     "name": "key",
@@ -111,12 +111,12 @@
         },
         {
             "name": "DataQuery",
-            "id": "interface-DataQuery-01efc5fc33d24c1d65cff6c0b019da81e51321b82f5349b68935edc5935d32bb4bc563b4f6edebdf41e97753ab180743cbe1782441e52a42994cac46360cae96",
+            "id": "interface-DataQuery-ea12f208e1c51d0d869262a05424d98d8cdef373650c3c8642da31b718aa9d85e6e885285e6dc946b321290e7c4c1b574ae4fee3612110cd4efa3f7d8bacb60f",
             "file": "src/app/data/data.provider.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable, EMPTY } from 'rxjs';\r\n\r\nexport interface Condition {\r\n  key: string,\r\n  value: string\r\n}\r\n\r\nexport interface DataQuery {\r\n  table: string,\r\n  condition?: Array<Condition>\r\n};\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\n/**\r\n * generic data provider class\r\n*/\r\nexport class IDataProvider {\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  getAll(query: DataQuery) : Observable<any[]> {\r\n    return EMPTY;\r\n  }\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  get(query: DataQuery) : Observable<any> {\r\n    return EMPTY;\r\n  }\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  update(query: DataQuery) : Observable<any> {\r\n    return EMPTY;\r\n  }\r\n\r\n}",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable, EMPTY } from 'rxjs';\r\n\r\nexport interface Condition {\r\n  key: string,\r\n  value: string\r\n}\r\n\r\nexport interface DataQuery {\r\n  table: string,\r\n  condition?: Array<Condition>\r\n};\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\n/**\r\n * generic data provider class\r\n*/\r\nexport abstract class IDataProvider {\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract getAll(query: DataQuery) : Observable<any[]>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract get(query: DataQuery) : Observable<any>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  abstract update(query: DataQuery) : Observable<any>;\r\n\r\n}",
             "properties": [
                 {
                     "name": "condition",
@@ -343,7 +343,7 @@
         },
         {
             "name": "FirebaseProvider",
-            "id": "injectable-FirebaseProvider-bfab1d8e039cd5a9af4e0f937c86c340c7be26abe5921e84fc517321bcde44ee9a6bfdc7c3c59d2a4e5bd665d956e4980ac77ef141f3db4fde531090f88e78e6",
+            "id": "injectable-FirebaseProvider-a32514740c90bff16416a6e8917cf1d91503f00ecbb0e78224a2d411910867a6a04ab9ab2159ef331d6ca039c21a3a42b18ca8f228cd57650032b21a5f7e3f89",
             "file": "src/app/data/firebase.provider.ts",
             "properties": [],
             "methods": [
@@ -363,9 +363,6 @@
                     "line": 21,
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "modifierKind": [
-                        158
-                    ],
                     "jsdoctags": [
                         {
                             "name": "query",
@@ -376,10 +373,7 @@
                                 "text": "param"
                             }
                         }
-                    ],
-                    "inheritance": {
-                        "file": "IDataProvider"
-                    }
+                    ]
                 },
                 {
                     "name": "getAll",
@@ -397,9 +391,6 @@
                     "line": 16,
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "modifierKind": [
-                        158
-                    ],
                     "jsdoctags": [
                         {
                             "name": "query",
@@ -410,10 +401,7 @@
                                 "text": "param"
                             }
                         }
-                    ],
-                    "inheritance": {
-                        "file": "IDataProvider"
-                    }
+                    ]
                 },
                 {
                     "name": "update",
@@ -428,11 +416,9 @@
                     "optional": false,
                     "returnType": "Observable<any>",
                     "typeParameters": [],
-                    "line": 43,
+                    "line": 41,
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\n\nshould return empty data if not implemented\n",
-                    "description": "<p>should return empty data if not implemented</p>\n",
                     "jsdoctags": [
                         {
                             "name": "query",
@@ -442,30 +428,15 @@
                             "tagName": {
                                 "text": "param"
                             }
-                        },
-                        {
-                            "tagName": {
-                                "pos": 754,
-                                "end": 761,
-                                "flags": 4227072,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
-                                "kind": 79,
-                                "escapedText": "returns"
-                            },
-                            "comment": "<p>generic type</p>\n"
                         }
-                    ],
-                    "inheritance": {
-                        "file": "IDataProvider"
-                    }
+                    ]
                 }
             ],
             "deprecated": false,
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable, NgModule } from '@angular/core';\r\nimport { AngularFireModule } from '@angular/fire/compat';\r\nimport { AngularFirestoreModule, CollectionReference, Query } from '@angular/fire/compat/firestore';\r\nimport { AngularFirestore } from '@angular/fire/compat/firestore';\r\nimport { BehaviorSubject, Observable, combineLatest, switchMap, OperatorFunction } from 'rxjs';\r\nimport { environment } from '../../environments/environment';\r\n\r\nimport { IDataProvider, DataQuery, Condition } from './data.provider';\r\n\r\n@Injectable()\r\n\r\nexport class FirebaseProvider extends IDataProvider {\r\n  \r\n  constructor (private firestore: AngularFirestore) { super(); }\r\n\r\n  override getAll(query: DataQuery): Observable<any[]> {\r\n    const targetedCollection = this.firestore.collection(query.table).valueChanges()\r\n    return targetedCollection;\r\n  }\r\n\r\n  override get(query: DataQuery): Observable<any> {\r\n    let behaviours: any = [];\r\n    behaviours = query.condition?.map( () => new BehaviorSubject(''));\r\n    const items = combineLatest(behaviours)\r\n      .pipe(\r\n        switchMap((conditions) =>\r\n            this.firestore.collection(query.table, ref => {\r\n              let queryConditions: Condition[] = Array.prototype.slice.call(conditions);\r\n              let query : CollectionReference | Query = ref;\r\n              queryConditions.forEach((condition: Condition) => {\r\n                if (condition.value) query = query.where(condition.key, '==', condition.value);\r\n              });\r\n              return query;\r\n            }).valueChanges()\r\n        )\r\n      )\r\n    query.condition?.forEach( (condition, index) => behaviours[index].next(condition));\r\n    return items;\r\n  }\r\n  \r\n}\r\n\r\n@NgModule({\r\n  imports: [\r\n    AngularFireModule.initializeApp(environment.firebaseConfiguration),\r\n    AngularFirestoreModule\r\n  ]\r\n})\r\n\r\nexport class FirebaseModule {};",
+            "sourceCode": "import { Injectable, NgModule } from '@angular/core';\r\nimport { AngularFireModule } from '@angular/fire/compat';\r\nimport { AngularFirestoreModule, CollectionReference, Query } from '@angular/fire/compat/firestore';\r\nimport { AngularFirestore } from '@angular/fire/compat/firestore';\r\nimport { BehaviorSubject, Observable, combineLatest, switchMap, OperatorFunction, EMPTY } from 'rxjs';\r\nimport { environment } from '../../environments/environment';\r\n\r\nimport { IDataProvider, DataQuery, Condition } from './data.provider';\r\n\r\n@Injectable()\r\n\r\nexport class FirebaseProvider implements IDataProvider {\r\n  \r\n  constructor (private firestore: AngularFirestore) { }\r\n\r\n  getAll(query: DataQuery): Observable<any[]> {\r\n    const targetedCollection = this.firestore.collection(query.table).valueChanges()\r\n    return targetedCollection;\r\n  }\r\n\r\n  get(query: DataQuery): Observable<any> {\r\n    let behaviours: any = [];\r\n    behaviours = query.condition?.map( () => new BehaviorSubject(''));\r\n    const items = combineLatest(behaviours)\r\n      .pipe(\r\n        switchMap((conditions) =>\r\n            this.firestore.collection(query.table, ref => {\r\n              let queryConditions: Condition[] = Array.prototype.slice.call(conditions);\r\n              let query : CollectionReference | Query = ref;\r\n              queryConditions.forEach((condition: Condition) => {\r\n                if (condition.value) query = query.where(condition.key, '==', condition.value);\r\n              });\r\n              return query;\r\n            }).valueChanges()\r\n        )\r\n      )\r\n    query.condition?.forEach( (condition, index) => behaviours[index].next(condition));\r\n    return items;\r\n  }\r\n\r\n  update(query: DataQuery): Observable<any> {\r\n    return EMPTY;\r\n  }\r\n  \r\n}\r\n\r\n@NgModule({\r\n  imports: [\r\n    AngularFireModule.initializeApp(environment.firebaseConfiguration),\r\n    AngularFirestoreModule\r\n  ]\r\n})\r\n\r\nexport class FirebaseModule {};",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -492,12 +463,11 @@
                     }
                 ]
             },
-            "extends": "IDataProvider",
             "type": "injectable"
         },
         {
             "name": "IDataProvider",
-            "id": "injectable-IDataProvider-01efc5fc33d24c1d65cff6c0b019da81e51321b82f5349b68935edc5935d32bb4bc563b4f6edebdf41e97753ab180743cbe1782441e52a42994cac46360cae96",
+            "id": "injectable-IDataProvider-ea12f208e1c51d0d869262a05424d98d8cdef373650c3c8642da31b718aa9d85e6e885285e6dc946b321290e7c4c1b574ae4fee3612110cd4efa3f7d8bacb60f",
             "file": "src/app/data/data.provider.ts",
             "properties": [],
             "methods": [
@@ -514,11 +484,14 @@
                     "optional": false,
                     "returnType": "Observable<any>",
                     "typeParameters": [],
-                    "line": 35,
+                    "line": 33,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nshould return empty data if not implemented\n",
                     "description": "<p>should return empty data if not implemented</p>\n",
+                    "modifierKind": [
+                        126
+                    ],
                     "jsdoctags": [
                         {
                             "name": "query",
@@ -531,8 +504,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 591,
-                                "end": 598,
+                                "pos": 585,
+                                "end": 592,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -561,6 +534,9 @@
                     "deprecationMessage": "",
                     "rawdescription": "\n\nshould return empty data if not implemented\n",
                     "description": "<p>should return empty data if not implemented</p>\n",
+                    "modifierKind": [
+                        126
+                    ],
                     "jsdoctags": [
                         {
                             "name": "query",
@@ -573,8 +549,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 423,
-                                "end": 430,
+                                "pos": 432,
+                                "end": 439,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -598,11 +574,14 @@
                     "optional": false,
                     "returnType": "Observable<any>",
                     "typeParameters": [],
-                    "line": 43,
+                    "line": 39,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nshould return empty data if not implemented\n",
                     "description": "<p>should return empty data if not implemented</p>\n",
+                    "modifierKind": [
+                        126
+                    ],
                     "jsdoctags": [
                         {
                             "name": "query",
@@ -615,8 +594,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 754,
-                                "end": 761,
+                                "pos": 733,
+                                "end": 740,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -632,12 +611,12 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable, EMPTY } from 'rxjs';\r\n\r\nexport interface Condition {\r\n  key: string,\r\n  value: string\r\n}\r\n\r\nexport interface DataQuery {\r\n  table: string,\r\n  condition?: Array<Condition>\r\n};\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\n/**\r\n * generic data provider class\r\n*/\r\nexport class IDataProvider {\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  getAll(query: DataQuery) : Observable<any[]> {\r\n    return EMPTY;\r\n  }\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  get(query: DataQuery) : Observable<any> {\r\n    return EMPTY;\r\n  }\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  update(query: DataQuery) : Observable<any> {\r\n    return EMPTY;\r\n  }\r\n\r\n}",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable, EMPTY } from 'rxjs';\r\n\r\nexport interface Condition {\r\n  key: string,\r\n  value: string\r\n}\r\n\r\nexport interface DataQuery {\r\n  table: string,\r\n  condition?: Array<Condition>\r\n};\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\n/**\r\n * generic data provider class\r\n*/\r\nexport abstract class IDataProvider {\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract getAll(query: DataQuery) : Observable<any[]>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract get(query: DataQuery) : Observable<any>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  abstract update(query: DataQuery) : Observable<any>;\r\n\r\n}",
             "type": "injectable"
         },
         {
             "name": "ObjectKeysPipe",
-            "id": "injectable-ObjectKeysPipe-5ea8c78f51d7a2fde8a7f4344d65b06998da15d995bc0ac3d7e09d5315413a8378b02dc097acdbfd706b5eb589bd8efb7f5931c04417502a2b80df66924773f2",
+            "id": "pipe-ObjectKeysPipe-5ea8c78f51d7a2fde8a7f4344d65b06998da15d995bc0ac3d7e09d5315413a8378b02dc097acdbfd706b5eb589bd8efb7f5931c04417502a2b80df66924773f2",
             "file": "src/app/utils/object-keys.pipe.ts",
             "properties": [],
             "methods": [
@@ -675,7 +654,7 @@
             "description": "",
             "rawdescription": "\n",
             "sourceCode": "import { Injectable, Pipe } from '@angular/core';\r\n\r\n@Pipe({\r\n  name: 'objectkeys'\r\n})\r\n\r\n@Injectable()\r\n\r\nexport class ObjectKeysPipe {\r\n\r\n  transform(value: any):any {\r\n    const keys = Reflect.ownKeys(value);\r\n    return keys;\r\n  }\r\n\r\n}",
-            "type": "injectable"
+            "type": "pipe"
         },
         {
             "name": "RouteService",
@@ -855,12 +834,12 @@
         },
         {
             "name": "Heading",
-            "id": "class-Heading-b3cd16b4632936045fc51211660893b6f26788fa999803b06be4facad429267338c1ba23ce1284e4730896e7c3cd2a69910252f7ff9c546cc2eb5fe148bfe960",
+            "id": "class-Heading-5e3b50d9ef5934741bdeea38a136ea30005208f4be1e3852100c90dc1a80ceb85117bdcf9ee362498b77d2cd4e3671489f63c671b0f866cfeaf719b3f563eceb",
             "file": "src/app/components/content-block/content-block.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { Component, Input, OnInit } from \"@angular/core\";\r\n\r\nclass Heading {\r\n  type: string;\r\n  value: string;\r\n}\r\n\r\n@Component({\r\n  selector: 'content-block',\r\n  templateUrl: './content-block.component.html'\r\n})\r\n\r\nexport class ContentBlockComponent implements OnInit {\r\n  @Input() heading: Heading;\r\n  @Input() description: string;\r\n\r\n  ngOnInit(): void {\r\n      console.warn(this.description)\r\n  }\r\n}",
+            "sourceCode": "import { Component, Input } from \"@angular/core\";\r\n\r\nexport class Heading {\r\n  type: string;\r\n  value: string;\r\n}\r\n\r\n@Component({\r\n  selector: 'content-block',\r\n  templateUrl: './content-block.component.html'\r\n})\r\n\r\nexport class ContentBlockComponent {\r\n  @Input() heading: Heading = new Heading();\r\n  @Input() description: string;\r\n}",
             "properties": [
                 {
                     "name": "type",
@@ -890,12 +869,12 @@
         },
         {
             "name": "NavigationItem",
-            "id": "class-NavigationItem-5173d66fae7148123b4688956fd5805b98b54d426c4e6124d2e7ef35b6a2a1306c5601ad29c101d3d365802f3f4f1b72330c75e987e7d7c91f3d5cbb70b6bdf3",
+            "id": "class-NavigationItem-8eda15929058684cf9ab27e86f7b46ad4b14c0d9ad565fa8a9ad4f85dc8e119c5b206e4b995ba2ef36d11a0315cca8ed9e9da017f0ac036e125a5956750d8966",
             "file": "src/app/components/navigation/navigation.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { Component, Input, OnChanges, SimpleChanges } from \"@angular/core\";\r\n\r\nclass NavigationItem {\r\n  label: string;\r\n  url: string;\r\n}\r\n\r\n@Component({\r\n  selector: 'navigation',\r\n  templateUrl: './navigation.component.html'\r\n})\r\n\r\nexport class NavigationComponent implements OnChanges {\r\n  @Input() title: string;\r\n  @Input() items: NavigationItem[];\r\n\r\n  ngOnChanges(changes: SimpleChanges): void {\r\n      console.warn(this.title)\r\n  }\r\n}",
+            "sourceCode": "import { Component, Input, OnChanges, SimpleChanges } from \"@angular/core\";\r\n\r\nexport class NavigationItem {\r\n  label: string;\r\n  url: string;\r\n}\r\n\r\n@Component({\r\n  selector: 'navigation',\r\n  templateUrl: './navigation.component.html'\r\n})\r\n\r\nexport class NavigationComponent implements OnChanges {\r\n  @Input() title: string;\r\n  @Input() items: NavigationItem[];\r\n\r\n  ngOnChanges(changes: SimpleChanges): void {\r\n      console.warn(this.title)\r\n  }\r\n}",
             "properties": [
                 {
                     "name": "label",
@@ -1244,7 +1223,7 @@
         },
         {
             "name": "ContentBlockComponent",
-            "id": "component-ContentBlockComponent-b3cd16b4632936045fc51211660893b6f26788fa999803b06be4facad429267338c1ba23ce1284e4730896e7c3cd2a69910252f7ff9c546cc2eb5fe148bfe960",
+            "id": "component-ContentBlockComponent-5e3b50d9ef5934741bdeea38a136ea30005208f4be1e3852100c90dc1a80ceb85117bdcf9ee362498b77d2cd4e3671489f63c671b0f866cfeaf719b3f563eceb",
             "file": "src/app/components/content-block/content-block.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1269,6 +1248,7 @@
                 },
                 {
                     "name": "heading",
+                    "defaultValue": "new Heading()",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 14,
@@ -1278,18 +1258,7 @@
             ],
             "outputsClass": [],
             "propertiesClass": [],
-            "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 17,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ],
+            "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -1297,18 +1266,15 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from \"@angular/core\";\r\n\r\nclass Heading {\r\n  type: string;\r\n  value: string;\r\n}\r\n\r\n@Component({\r\n  selector: 'content-block',\r\n  templateUrl: './content-block.component.html'\r\n})\r\n\r\nexport class ContentBlockComponent implements OnInit {\r\n  @Input() heading: Heading;\r\n  @Input() description: string;\r\n\r\n  ngOnInit(): void {\r\n      console.warn(this.description)\r\n  }\r\n}",
+            "sourceCode": "import { Component, Input } from \"@angular/core\";\r\n\r\nexport class Heading {\r\n  type: string;\r\n  value: string;\r\n}\r\n\r\n@Component({\r\n  selector: 'content-block',\r\n  templateUrl: './content-block.component.html'\r\n})\r\n\r\nexport class ContentBlockComponent {\r\n  @Input() heading: Heading = new Heading();\r\n  @Input() description: string;\r\n}",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<!-- {{heading.type}} -->\r\n\r\n<!-- <h1 *ngIf=\"(heading.type | lowercase ) === 'h1'\"> {{heading.value}} </h1>\r\n<h2 *ngIf=\"(heading.type | lowercase ) === 'h2'\"> {{heading.value}} </h2>\r\n<div *richText=\"description\"></div> -->"
+            "templateData": "\r\n<h1 *ngIf=\"(heading.type | lowercase ) === 'h1'\">{{heading.value}}</h1>\r\n<h2 *ngIf=\"(heading.type | lowercase ) === 'h2'\">{{heading.value}}</h2>\r\n<div *richText=\"description\"></div>"
         },
         {
             "name": "NavigationComponent",
-            "id": "component-NavigationComponent-5173d66fae7148123b4688956fd5805b98b54d426c4e6124d2e7ef35b6a2a1306c5601ad29c101d3d365802f3f4f1b72330c75e987e7d7c91f3d5cbb70b6bdf3",
+            "id": "component-NavigationComponent-8eda15929058684cf9ab27e86f7b46ad4b14c0d9ad565fa8a9ad4f85dc8e119c5b206e4b995ba2ef36d11a0315cca8ed9e9da017f0ac036e125a5956750d8966",
             "file": "src/app/components/navigation/navigation.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1379,14 +1345,14 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnChanges, SimpleChanges } from \"@angular/core\";\r\n\r\nclass NavigationItem {\r\n  label: string;\r\n  url: string;\r\n}\r\n\r\n@Component({\r\n  selector: 'navigation',\r\n  templateUrl: './navigation.component.html'\r\n})\r\n\r\nexport class NavigationComponent implements OnChanges {\r\n  @Input() title: string;\r\n  @Input() items: NavigationItem[];\r\n\r\n  ngOnChanges(changes: SimpleChanges): void {\r\n      console.warn(this.title)\r\n  }\r\n}",
+            "sourceCode": "import { Component, Input, OnChanges, SimpleChanges } from \"@angular/core\";\r\n\r\nexport class NavigationItem {\r\n  label: string;\r\n  url: string;\r\n}\r\n\r\n@Component({\r\n  selector: 'navigation',\r\n  templateUrl: './navigation.component.html'\r\n})\r\n\r\nexport class NavigationComponent implements OnChanges {\r\n  @Input() title: string;\r\n  @Input() items: NavigationItem[];\r\n\r\n  ngOnChanges(changes: SimpleChanges): void {\r\n      console.warn(this.title)\r\n  }\r\n}",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "implements": [
                 "OnChanges"
             ],
-            "templateData": "\r\n<p>{{title}}</p>\r\n<nav>\r\n  <ul>\r\n    <li *ngFor=\"let item of items\">\r\n      <a routerLink={{item.url}}>{{item.label}}</a>\r\n    </li>\r\n  </ul>\r\n</nav>"
+            "templateData": "\r\n<p>{{title}}</p>\r\n<nav class=\"nav-item\">\r\n  <ul class=\"nav-item__list\">\r\n    <li *ngFor=\"let item of items\" class=\"nav-item__item\">\r\n      <a routerLink={{item.url}} lass=\"nav-item__link\">{{item.label}}</a>\r\n    </li>\r\n  </ul>\r\n</nav>"
         },
         {
             "name": "NotFoundComponent",
@@ -1951,13 +1917,13 @@
         },
         {
             "name": "FirebaseModule",
-            "id": "module-FirebaseModule-bfab1d8e039cd5a9af4e0f937c86c340c7be26abe5921e84fc517321bcde44ee9a6bfdc7c3c59d2a4e5bd665d956e4980ac77ef141f3db4fde531090f88e78e6",
+            "id": "module-FirebaseModule-a32514740c90bff16416a6e8917cf1d91503f00ecbb0e78224a2d411910867a6a04ab9ab2159ef331d6ca039c21a3a42b18ca8f228cd57650032b21a5f7e3f89",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/data/firebase.provider.ts",
             "methods": [],
-            "sourceCode": "import { Injectable, NgModule } from '@angular/core';\r\nimport { AngularFireModule } from '@angular/fire/compat';\r\nimport { AngularFirestoreModule, CollectionReference, Query } from '@angular/fire/compat/firestore';\r\nimport { AngularFirestore } from '@angular/fire/compat/firestore';\r\nimport { BehaviorSubject, Observable, combineLatest, switchMap, OperatorFunction } from 'rxjs';\r\nimport { environment } from '../../environments/environment';\r\n\r\nimport { IDataProvider, DataQuery, Condition } from './data.provider';\r\n\r\n@Injectable()\r\n\r\nexport class FirebaseProvider extends IDataProvider {\r\n  \r\n  constructor (private firestore: AngularFirestore) { super(); }\r\n\r\n  override getAll(query: DataQuery): Observable<any[]> {\r\n    const targetedCollection = this.firestore.collection(query.table).valueChanges()\r\n    return targetedCollection;\r\n  }\r\n\r\n  override get(query: DataQuery): Observable<any> {\r\n    let behaviours: any = [];\r\n    behaviours = query.condition?.map( () => new BehaviorSubject(''));\r\n    const items = combineLatest(behaviours)\r\n      .pipe(\r\n        switchMap((conditions) =>\r\n            this.firestore.collection(query.table, ref => {\r\n              let queryConditions: Condition[] = Array.prototype.slice.call(conditions);\r\n              let query : CollectionReference | Query = ref;\r\n              queryConditions.forEach((condition: Condition) => {\r\n                if (condition.value) query = query.where(condition.key, '==', condition.value);\r\n              });\r\n              return query;\r\n            }).valueChanges()\r\n        )\r\n      )\r\n    query.condition?.forEach( (condition, index) => behaviours[index].next(condition));\r\n    return items;\r\n  }\r\n  \r\n}\r\n\r\n@NgModule({\r\n  imports: [\r\n    AngularFireModule.initializeApp(environment.firebaseConfiguration),\r\n    AngularFirestoreModule\r\n  ]\r\n})\r\n\r\nexport class FirebaseModule {};",
+            "sourceCode": "import { Injectable, NgModule } from '@angular/core';\r\nimport { AngularFireModule } from '@angular/fire/compat';\r\nimport { AngularFirestoreModule, CollectionReference, Query } from '@angular/fire/compat/firestore';\r\nimport { AngularFirestore } from '@angular/fire/compat/firestore';\r\nimport { BehaviorSubject, Observable, combineLatest, switchMap, OperatorFunction, EMPTY } from 'rxjs';\r\nimport { environment } from '../../environments/environment';\r\n\r\nimport { IDataProvider, DataQuery, Condition } from './data.provider';\r\n\r\n@Injectable()\r\n\r\nexport class FirebaseProvider implements IDataProvider {\r\n  \r\n  constructor (private firestore: AngularFirestore) { }\r\n\r\n  getAll(query: DataQuery): Observable<any[]> {\r\n    const targetedCollection = this.firestore.collection(query.table).valueChanges()\r\n    return targetedCollection;\r\n  }\r\n\r\n  get(query: DataQuery): Observable<any> {\r\n    let behaviours: any = [];\r\n    behaviours = query.condition?.map( () => new BehaviorSubject(''));\r\n    const items = combineLatest(behaviours)\r\n      .pipe(\r\n        switchMap((conditions) =>\r\n            this.firestore.collection(query.table, ref => {\r\n              let queryConditions: Condition[] = Array.prototype.slice.call(conditions);\r\n              let query : CollectionReference | Query = ref;\r\n              queryConditions.forEach((condition: Condition) => {\r\n                if (condition.value) query = query.where(condition.key, '==', condition.value);\r\n              });\r\n              return query;\r\n            }).valueChanges()\r\n        )\r\n      )\r\n    query.condition?.forEach( (condition, index) => behaviours[index].next(condition));\r\n    return items;\r\n  }\r\n\r\n  update(query: DataQuery): Observable<any> {\r\n    return EMPTY;\r\n  }\r\n  \r\n}\r\n\r\n@NgModule({\r\n  imports: [\r\n    AngularFireModule.initializeApp(environment.firebaseConfiguration),\r\n    AngularFirestoreModule\r\n  ]\r\n})\r\n\r\nexport class FirebaseModule {};",
             "children": [
                 {
                     "type": "providers",
@@ -2196,7 +2162,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\n  production: true\n}"
+                "defaultValue": "{\n  production: true,\n  firebaseConfiguration: {\n    apiKey: 'AIzaSyDqPst1JL0EWfa9h-ZYVM2p7-QNXFARLTM',\n    authDomain: 'headless-angular.firebaseapp.com',\n    databaseURL: 'https://headless-angular-default-rtdb.firebaseio.com',\n    projectId: 'headless-angular',\n    storageBucket: 'headless-angular.appspot.com',\n    messagingSenderId: '60892068353'\n  }\n}"
             },
             {
                 "name": "environment",
@@ -2235,7 +2201,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<ContentBlockComponent>",
-                "defaultValue": "args => ({\r\n  props: {\r\n    description: '<p>Lol</p>'\r\n  },\r\n})"
+                "defaultValue": "args => ({\r\n  props: args\r\n})"
             },
             {
                 "name": "Template",
@@ -2346,7 +2312,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<ContentBlockComponent>",
-                    "defaultValue": "args => ({\r\n  props: {\r\n    description: '<p>Lol</p>'\r\n  },\r\n})"
+                    "defaultValue": "args => ({\r\n  props: args\r\n})"
                 }
             ],
             "src/test.ts": [
@@ -2379,7 +2345,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\n  production: true\n}"
+                    "defaultValue": "{\n  production: true,\n  firebaseConfiguration: {\n    apiKey: 'AIzaSyDqPst1JL0EWfa9h-ZYVM2p7-QNXFARLTM',\n    authDomain: 'headless-angular.firebaseapp.com',\n    databaseURL: 'https://headless-angular-default-rtdb.firebaseio.com',\n    projectId: 'headless-angular',\n    storageBucket: 'headless-angular.appspot.com',\n    messagingSenderId: '60892068353'\n  }\n}"
                 }
             ],
             "src/environments/environment.ts": [
@@ -2534,7 +2500,7 @@
         ]
     },
     "coverage": {
-        "count": 2,
+        "count": 1,
         "status": "low",
         "files": [
             {
@@ -2581,7 +2547,7 @@
                 "linktype": "component",
                 "name": "ContentBlockComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -2663,8 +2629,8 @@
                 "type": "injectable",
                 "linktype": "injectable",
                 "name": "FirebaseProvider",
-                "coveragePercent": 20,
-                "coverageCount": "1/5",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
