@@ -21,9 +21,8 @@ export class RouteFetcher implements Resolve<RoutingState> {
       key: 'url',
       value: route.params['url']
     });
-    const routes = this.dataProvider.get(this.query)
-      .pipe(first())
-      .pipe(map(results => results[0]))
-    return routes;
+    return this.dataProvider.get(this.query)
+    .pipe(first())
+    .pipe(map(results => results[0]));
   }
 }

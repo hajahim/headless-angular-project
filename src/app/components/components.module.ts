@@ -26,4 +26,4 @@ import { RouterModule } from "@angular/router";
   ]
 })
 
-export class ComponentsModule { };
+export class ComponentsModule { }

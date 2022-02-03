@@ -79,12 +79,12 @@
         },
         {
             "name": "Condition",
-            "id": "interface-Condition-ea12f208e1c51d0d869262a05424d98d8cdef373650c3c8642da31b718aa9d85e6e885285e6dc946b321290e7c4c1b574ae4fee3612110cd4efa3f7d8bacb60f",
+            "id": "interface-Condition-9e81e95f38ca4139412b9b50d7cc097047463a82dc264a724411765f1b1d4b8508760ff96e59e3736e2a8fdf04b6cbb1c0e49ed612b53c231c380ed8c94e35bd",
             "file": "src/app/data/data.provider.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable, EMPTY } from 'rxjs';\r\n\r\nexport interface Condition {\r\n  key: string,\r\n  value: string\r\n}\r\n\r\nexport interface DataQuery {\r\n  table: string,\r\n  condition?: Array<Condition>\r\n};\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\n/**\r\n * generic data provider class\r\n*/\r\nexport abstract class IDataProvider {\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract getAll(query: DataQuery) : Observable<any[]>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract get(query: DataQuery) : Observable<any>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  abstract update(query: DataQuery) : Observable<any>;\r\n\r\n}",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\n\r\nexport interface Condition {\r\n  key: string,\r\n  value: string\r\n}\r\n\r\nexport interface DataQuery {\r\n  table: string,\r\n  condition?: Array<Condition>\r\n}\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\n/**\r\n * generic data provider class\r\n*/\r\nexport abstract class IDataProvider {\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract getAll(query: DataQuery) : Observable<any[]>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract get(query: DataQuery) : Observable<any>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  abstract update(query: DataQuery) : Observable<any>;\r\n\r\n}",
             "properties": [
                 {
                     "name": "key",
@@ -111,12 +111,12 @@
         },
         {
             "name": "DataQuery",
-            "id": "interface-DataQuery-ea12f208e1c51d0d869262a05424d98d8cdef373650c3c8642da31b718aa9d85e6e885285e6dc946b321290e7c4c1b574ae4fee3612110cd4efa3f7d8bacb60f",
+            "id": "interface-DataQuery-9e81e95f38ca4139412b9b50d7cc097047463a82dc264a724411765f1b1d4b8508760ff96e59e3736e2a8fdf04b6cbb1c0e49ed612b53c231c380ed8c94e35bd",
             "file": "src/app/data/data.provider.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable, EMPTY } from 'rxjs';\r\n\r\nexport interface Condition {\r\n  key: string,\r\n  value: string\r\n}\r\n\r\nexport interface DataQuery {\r\n  table: string,\r\n  condition?: Array<Condition>\r\n};\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\n/**\r\n * generic data provider class\r\n*/\r\nexport abstract class IDataProvider {\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract getAll(query: DataQuery) : Observable<any[]>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract get(query: DataQuery) : Observable<any>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  abstract update(query: DataQuery) : Observable<any>;\r\n\r\n}",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\n\r\nexport interface Condition {\r\n  key: string,\r\n  value: string\r\n}\r\n\r\nexport interface DataQuery {\r\n  table: string,\r\n  condition?: Array<Condition>\r\n}\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\n/**\r\n * generic data provider class\r\n*/\r\nexport abstract class IDataProvider {\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract getAll(query: DataQuery) : Observable<any[]>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract get(query: DataQuery) : Observable<any>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  abstract update(query: DataQuery) : Observable<any>;\r\n\r\n}",
             "properties": [
                 {
                     "name": "condition",
@@ -343,7 +343,7 @@
         },
         {
             "name": "FirebaseProvider",
-            "id": "injectable-FirebaseProvider-a32514740c90bff16416a6e8917cf1d91503f00ecbb0e78224a2d411910867a6a04ab9ab2159ef331d6ca039c21a3a42b18ca8f228cd57650032b21a5f7e3f89",
+            "id": "injectable-FirebaseProvider-889672477339ded02d4ed47762ab34621b9900f3002420c0fc60238a60c2bd6733ab159ec07c04614ae3ee4ba22bdefc4ff03b6558066dc9e09f79d3649de69f",
             "file": "src/app/data/firebase.provider.ts",
             "properties": [],
             "methods": [
@@ -360,7 +360,7 @@
                     "optional": false,
                     "returnType": "Observable<any>",
                     "typeParameters": [],
-                    "line": 21,
+                    "line": 19,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -388,7 +388,7 @@
                     "optional": false,
                     "returnType": "Observable<any[]>",
                     "typeParameters": [],
-                    "line": 16,
+                    "line": 15,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -416,7 +416,7 @@
                     "optional": false,
                     "returnType": "Observable<any>",
                     "typeParameters": [],
-                    "line": 41,
+                    "line": 39,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -436,7 +436,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable, NgModule } from '@angular/core';\r\nimport { AngularFireModule } from '@angular/fire/compat';\r\nimport { AngularFirestoreModule, CollectionReference, Query } from '@angular/fire/compat/firestore';\r\nimport { AngularFirestore } from '@angular/fire/compat/firestore';\r\nimport { BehaviorSubject, Observable, combineLatest, switchMap, OperatorFunction, EMPTY } from 'rxjs';\r\nimport { environment } from '../../environments/environment';\r\n\r\nimport { IDataProvider, DataQuery, Condition } from './data.provider';\r\n\r\n@Injectable()\r\n\r\nexport class FirebaseProvider implements IDataProvider {\r\n  \r\n  constructor (private firestore: AngularFirestore) { }\r\n\r\n  getAll(query: DataQuery): Observable<any[]> {\r\n    const targetedCollection = this.firestore.collection(query.table).valueChanges()\r\n    return targetedCollection;\r\n  }\r\n\r\n  get(query: DataQuery): Observable<any> {\r\n    let behaviours: any = [];\r\n    behaviours = query.condition?.map( () => new BehaviorSubject(''));\r\n    const items = combineLatest(behaviours)\r\n      .pipe(\r\n        switchMap((conditions) =>\r\n            this.firestore.collection(query.table, ref => {\r\n              let queryConditions: Condition[] = Array.prototype.slice.call(conditions);\r\n              let query : CollectionReference | Query = ref;\r\n              queryConditions.forEach((condition: Condition) => {\r\n                if (condition.value) query = query.where(condition.key, '==', condition.value);\r\n              });\r\n              return query;\r\n            }).valueChanges()\r\n        )\r\n      )\r\n    query.condition?.forEach( (condition, index) => behaviours[index].next(condition));\r\n    return items;\r\n  }\r\n\r\n  update(query: DataQuery): Observable<any> {\r\n    return EMPTY;\r\n  }\r\n  \r\n}\r\n\r\n@NgModule({\r\n  imports: [\r\n    AngularFireModule.initializeApp(environment.firebaseConfiguration),\r\n    AngularFirestoreModule\r\n  ]\r\n})\r\n\r\nexport class FirebaseModule {};",
+            "sourceCode": "import { Injectable, NgModule } from '@angular/core';\r\nimport { AngularFireModule } from '@angular/fire/compat';\r\nimport { AngularFirestoreModule, CollectionReference, Query, AngularFirestore } from '@angular/fire/compat/firestore';\r\nimport { BehaviorSubject, Observable, combineLatest, switchMap, EMPTY } from 'rxjs';\r\nimport { environment } from '../../environments/environment';\r\n\r\nimport { IDataProvider, DataQuery, Condition } from './data.provider';\r\n\r\n@Injectable()\r\n\r\nexport class FirebaseProvider implements IDataProvider {\r\n  \r\n  constructor (private firestore: AngularFirestore) { }\r\n\r\n  getAll(query: DataQuery): Observable<any[]> {\r\n    return this.firestore.collection(query.table).valueChanges();\r\n  }\r\n\r\n  get(query: DataQuery): Observable<any> {\r\n    let behaviours: any = [];\r\n    behaviours = query.condition?.map( () => new BehaviorSubject(''));\r\n    const items = combineLatest(behaviours)\r\n      .pipe(\r\n        switchMap((conditions) =>\r\n            this.firestore.collection(query.table, ref => {\r\n              let queryConditions: Condition[] = Array.prototype.slice.call(conditions);\r\n              let collectionQuery : CollectionReference | Query = ref;\r\n              queryConditions.forEach((condition: Condition) => {\r\n                if (condition.value) collectionQuery = collectionQuery.where(condition.key, '==', condition.value);\r\n              });\r\n              return collectionQuery;\r\n            }).valueChanges()\r\n        )\r\n      )\r\n    query.condition?.forEach( (condition, index) => behaviours[index].next(condition));\r\n    return items;\r\n  }\r\n\r\n  update(query: DataQuery): Observable<any> {\r\n    return EMPTY;\r\n  }\r\n  \r\n}\r\n\r\n@NgModule({\r\n  imports: [\r\n    AngularFireModule.initializeApp(environment.firebaseConfiguration),\r\n    AngularFirestoreModule\r\n  ]\r\n})\r\n\r\nexport class FirebaseModule {};",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -450,7 +450,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 12,
+                "line": 11,
                 "jsdoctags": [
                     {
                         "name": "firestore",
@@ -467,7 +467,7 @@
         },
         {
             "name": "IDataProvider",
-            "id": "injectable-IDataProvider-ea12f208e1c51d0d869262a05424d98d8cdef373650c3c8642da31b718aa9d85e6e885285e6dc946b321290e7c4c1b574ae4fee3612110cd4efa3f7d8bacb60f",
+            "id": "injectable-IDataProvider-9e81e95f38ca4139412b9b50d7cc097047463a82dc264a724411765f1b1d4b8508760ff96e59e3736e2a8fdf04b6cbb1c0e49ed612b53c231c380ed8c94e35bd",
             "file": "src/app/data/data.provider.ts",
             "properties": [],
             "methods": [
@@ -504,8 +504,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 585,
-                                "end": 592,
+                                "pos": 577,
+                                "end": 584,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -549,8 +549,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 432,
-                                "end": 439,
+                                "pos": 424,
+                                "end": 431,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -594,8 +594,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 733,
-                                "end": 740,
+                                "pos": 725,
+                                "end": 732,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -611,7 +611,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable, EMPTY } from 'rxjs';\r\n\r\nexport interface Condition {\r\n  key: string,\r\n  value: string\r\n}\r\n\r\nexport interface DataQuery {\r\n  table: string,\r\n  condition?: Array<Condition>\r\n};\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\n/**\r\n * generic data provider class\r\n*/\r\nexport abstract class IDataProvider {\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract getAll(query: DataQuery) : Observable<any[]>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract get(query: DataQuery) : Observable<any>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  abstract update(query: DataQuery) : Observable<any>;\r\n\r\n}",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\n\r\nexport interface Condition {\r\n  key: string,\r\n  value: string\r\n}\r\n\r\nexport interface DataQuery {\r\n  table: string,\r\n  condition?: Array<Condition>\r\n}\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\n\r\n/**\r\n * generic data provider class\r\n*/\r\nexport abstract class IDataProvider {\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract getAll(query: DataQuery) : Observable<any[]>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n   abstract get(query: DataQuery) : Observable<any>;\r\n\r\n  /**\r\n   * should return empty data if not implemented\r\n   * @returns generic type\r\n   */\r\n  abstract update(query: DataQuery) : Observable<any>;\r\n\r\n}",
             "type": "injectable"
         },
         {
@@ -1824,13 +1824,13 @@
         },
         {
             "name": "ComponentsModule",
-            "id": "module-ComponentsModule-1e5046b8afdc541714d1fef9376a94f9d98ce83edcc9946a6c8d4b5931f8d864e23e7b717eac14e72f78b84656875f48404a8d5059ebcdd79ba73698290e4175",
+            "id": "module-ComponentsModule-cd4414578bc322f82fbdf90bcb9897ded33ae700ec2d4355854520908610bcde6b727efb4f9bf62c03a2d5d4f22141df10941bb26c34ab5ea2830e1cce6781be",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/components/components.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from \"@angular/core\";\r\nimport { CommonModule } from \"@angular/common\";\r\n\r\nimport { NavigationComponent } from \"./navigation/navigation.component\";\r\nimport { ContainerFlexComponent } from \"./container-block/container-flex.component\";\r\nimport { ContentBlockComponent } from \"./content-block/content-block.component\";\r\nimport { LibraryModule } from \"../lib/lib.module\";\r\nimport { UtilsModule } from \"../utils/utils.module\";\r\nimport { RouterModule } from \"@angular/router\";\r\n\r\n@NgModule({\r\n  imports: [\r\n    LibraryModule.registerComponent([\r\n      { tag: 'ContainerFlex', instance: ContainerFlexComponent },\r\n      { tag: 'Navigation', instance: NavigationComponent },\r\n      { tag: 'ContentBlock', instance: ContentBlockComponent }\r\n    ]),\r\n    CommonModule,\r\n    UtilsModule,\r\n    RouterModule\r\n  ],\r\n  declarations: [\r\n    ContainerFlexComponent,\r\n    NavigationComponent,\r\n    ContentBlockComponent\r\n  ]\r\n})\r\n\r\nexport class ComponentsModule { };",
+            "sourceCode": "import { NgModule } from \"@angular/core\";\r\nimport { CommonModule } from \"@angular/common\";\r\n\r\nimport { NavigationComponent } from \"./navigation/navigation.component\";\r\nimport { ContainerFlexComponent } from \"./container-block/container-flex.component\";\r\nimport { ContentBlockComponent } from \"./content-block/content-block.component\";\r\nimport { LibraryModule } from \"../lib/lib.module\";\r\nimport { UtilsModule } from \"../utils/utils.module\";\r\nimport { RouterModule } from \"@angular/router\";\r\n\r\n@NgModule({\r\n  imports: [\r\n    LibraryModule.registerComponent([\r\n      { tag: 'ContainerFlex', instance: ContainerFlexComponent },\r\n      { tag: 'Navigation', instance: NavigationComponent },\r\n      { tag: 'ContentBlock', instance: ContentBlockComponent }\r\n    ]),\r\n    CommonModule,\r\n    UtilsModule,\r\n    RouterModule\r\n  ],\r\n  declarations: [\r\n    ContainerFlexComponent,\r\n    NavigationComponent,\r\n    ContentBlockComponent\r\n  ]\r\n})\r\n\r\nexport class ComponentsModule { }",
             "children": [
                 {
                     "type": "providers",
@@ -1877,13 +1877,13 @@
         },
         {
             "name": "DataModule",
-            "id": "module-DataModule-81128a4fca93f66786abd8a3c18200e728be88beb983b08cd79388db1981c791855f301184dd467ebcd9fac72d5cd4db0f32f8f6ed6fd3abaf8a4f5dccd81628",
+            "id": "module-DataModule-8228ff2b65a4c2c6aa593746501671e3cf2de8f2b901efc3a504a03267b841b46f4f3744dbd6fa46ab4de853ae78f0cd16afdec40730d099244ccee713f46802",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/data/data.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { FirebaseModule, FirebaseProvider } from './firebase.provider';\r\nimport { IDataProvider } from './data.provider';\r\n\r\n@NgModule({\r\n  imports: [\r\n    FirebaseModule\r\n  ],\r\n  providers: [\r\n    { provide: IDataProvider, useClass: FirebaseProvider }\r\n  ]\r\n})\r\n\r\nexport class DataModule {};",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { FirebaseModule, FirebaseProvider } from './firebase.provider';\r\nimport { IDataProvider } from './data.provider';\r\n\r\n@NgModule({\r\n  imports: [\r\n    FirebaseModule\r\n  ],\r\n  providers: [\r\n    { provide: IDataProvider, useClass: FirebaseProvider }\r\n  ]\r\n})\r\n\r\nexport class DataModule { }",
             "children": [
                 {
                     "type": "providers",
@@ -1917,13 +1917,13 @@
         },
         {
             "name": "FirebaseModule",
-            "id": "module-FirebaseModule-a32514740c90bff16416a6e8917cf1d91503f00ecbb0e78224a2d411910867a6a04ab9ab2159ef331d6ca039c21a3a42b18ca8f228cd57650032b21a5f7e3f89",
+            "id": "module-FirebaseModule-889672477339ded02d4ed47762ab34621b9900f3002420c0fc60238a60c2bd6733ab159ec07c04614ae3ee4ba22bdefc4ff03b6558066dc9e09f79d3649de69f",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/data/firebase.provider.ts",
             "methods": [],
-            "sourceCode": "import { Injectable, NgModule } from '@angular/core';\r\nimport { AngularFireModule } from '@angular/fire/compat';\r\nimport { AngularFirestoreModule, CollectionReference, Query } from '@angular/fire/compat/firestore';\r\nimport { AngularFirestore } from '@angular/fire/compat/firestore';\r\nimport { BehaviorSubject, Observable, combineLatest, switchMap, OperatorFunction, EMPTY } from 'rxjs';\r\nimport { environment } from '../../environments/environment';\r\n\r\nimport { IDataProvider, DataQuery, Condition } from './data.provider';\r\n\r\n@Injectable()\r\n\r\nexport class FirebaseProvider implements IDataProvider {\r\n  \r\n  constructor (private firestore: AngularFirestore) { }\r\n\r\n  getAll(query: DataQuery): Observable<any[]> {\r\n    const targetedCollection = this.firestore.collection(query.table).valueChanges()\r\n    return targetedCollection;\r\n  }\r\n\r\n  get(query: DataQuery): Observable<any> {\r\n    let behaviours: any = [];\r\n    behaviours = query.condition?.map( () => new BehaviorSubject(''));\r\n    const items = combineLatest(behaviours)\r\n      .pipe(\r\n        switchMap((conditions) =>\r\n            this.firestore.collection(query.table, ref => {\r\n              let queryConditions: Condition[] = Array.prototype.slice.call(conditions);\r\n              let query : CollectionReference | Query = ref;\r\n              queryConditions.forEach((condition: Condition) => {\r\n                if (condition.value) query = query.where(condition.key, '==', condition.value);\r\n              });\r\n              return query;\r\n            }).valueChanges()\r\n        )\r\n      )\r\n    query.condition?.forEach( (condition, index) => behaviours[index].next(condition));\r\n    return items;\r\n  }\r\n\r\n  update(query: DataQuery): Observable<any> {\r\n    return EMPTY;\r\n  }\r\n  \r\n}\r\n\r\n@NgModule({\r\n  imports: [\r\n    AngularFireModule.initializeApp(environment.firebaseConfiguration),\r\n    AngularFirestoreModule\r\n  ]\r\n})\r\n\r\nexport class FirebaseModule {};",
+            "sourceCode": "import { Injectable, NgModule } from '@angular/core';\r\nimport { AngularFireModule } from '@angular/fire/compat';\r\nimport { AngularFirestoreModule, CollectionReference, Query, AngularFirestore } from '@angular/fire/compat/firestore';\r\nimport { BehaviorSubject, Observable, combineLatest, switchMap, EMPTY } from 'rxjs';\r\nimport { environment } from '../../environments/environment';\r\n\r\nimport { IDataProvider, DataQuery, Condition } from './data.provider';\r\n\r\n@Injectable()\r\n\r\nexport class FirebaseProvider implements IDataProvider {\r\n  \r\n  constructor (private firestore: AngularFirestore) { }\r\n\r\n  getAll(query: DataQuery): Observable<any[]> {\r\n    return this.firestore.collection(query.table).valueChanges();\r\n  }\r\n\r\n  get(query: DataQuery): Observable<any> {\r\n    let behaviours: any = [];\r\n    behaviours = query.condition?.map( () => new BehaviorSubject(''));\r\n    const items = combineLatest(behaviours)\r\n      .pipe(\r\n        switchMap((conditions) =>\r\n            this.firestore.collection(query.table, ref => {\r\n              let queryConditions: Condition[] = Array.prototype.slice.call(conditions);\r\n              let collectionQuery : CollectionReference | Query = ref;\r\n              queryConditions.forEach((condition: Condition) => {\r\n                if (condition.value) collectionQuery = collectionQuery.where(condition.key, '==', condition.value);\r\n              });\r\n              return collectionQuery;\r\n            }).valueChanges()\r\n        )\r\n      )\r\n    query.condition?.forEach( (condition, index) => behaviours[index].next(condition));\r\n    return items;\r\n  }\r\n\r\n  update(query: DataQuery): Observable<any> {\r\n    return EMPTY;\r\n  }\r\n  \r\n}\r\n\r\n@NgModule({\r\n  imports: [\r\n    AngularFireModule.initializeApp(environment.firebaseConfiguration),\r\n    AngularFirestoreModule\r\n  ]\r\n})\r\n\r\nexport class FirebaseModule {};",
             "children": [
                 {
                     "type": "providers",

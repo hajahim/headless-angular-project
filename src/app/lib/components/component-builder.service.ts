@@ -1,4 +1,4 @@
-import { Inject, Injectable, Type, ComponentFactory } from "@angular/core";
+import { Inject, Injectable, Type } from "@angular/core";
 import { ComponentEntry } from "../lib.module";
 import { YIELDS_COMPONENTS, YIELDS_UNREFERENCED_COMPONENTS } from "./yields/yields.token";
 

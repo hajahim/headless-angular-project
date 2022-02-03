@@ -9,8 +9,7 @@ import { Injectable, Pipe } from '@angular/core';
 export class ObjectKeysPipe {
 
   transform(value: any):any {
-    const keys = Reflect.ownKeys(value);
-    return keys;
+    return  Reflect.ownKeys(value);
   }
 
 }

@@ -11,4 +11,4 @@ import { IDataProvider } from './data.provider';
   ]
 })
 
-export class DataModule {};
+export class DataModule { }

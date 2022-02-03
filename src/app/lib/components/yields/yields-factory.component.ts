@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef, Type } from "@angular/core";
+import { Component, Input, OnInit, ViewChild, ViewContainerRef, Type } from "@angular/core";
 import { RoutingState } from "src/app/routing/routingState";
 import { YieldsRecord, YieldsComponent } from "src/app/routing/yields";
 import { ComponentBuilderService } from "../component-builder.service";
@@ -14,7 +14,6 @@ export class YieldsFactoryComponent implements OnInit {
   @Input() context?: RoutingState;
 
   constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
     private componentBuilder: ComponentBuilderService
   ) { }
 
@@ -27,9 +26,8 @@ export class YieldsFactoryComponent implements OnInit {
     const yieldsComponents: Array<YieldsComponent> = this.getYieldsComponent(yields);
     yieldsComponents.forEach( (yieldComponent: YieldsComponent, index) => {
       const componentInstance = this.componentBuilder.getComponentByName(yieldComponent.componentName ?? '');
-      const componentImplementation = this.componentFactoryResolver.resolveComponentFactory(componentInstance.instance as Type<any>);
       this.portal.clear();
-      const componentRef = this.portal.createComponent(componentImplementation, index);
+      const componentRef = this.portal.createComponent(componentInstance.instance as Type<any>);
       for ( let key in yieldComponent.data) {
         const dataValue = yieldComponent.data[key];
         componentRef.instance[key] = dataValue;

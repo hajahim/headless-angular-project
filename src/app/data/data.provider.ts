@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, EMPTY } from 'rxjs';
+import { Observable } from 'rxjs';
 
 export interface Condition {
   key: string,
@@ -9,7 +9,7 @@ export interface Condition {
 export interface DataQuery {
   table: string,
   condition?: Array<Condition>
-};
+}
 
 @Injectable({
   providedIn: 'root'
